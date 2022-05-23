@@ -29,9 +29,11 @@ module.exports = (sequelize) => {
       }
     },
     platforms: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.TEXT),
       allowNull: false
     }
+  }, {
+    timestamps: false
   });
 };
 

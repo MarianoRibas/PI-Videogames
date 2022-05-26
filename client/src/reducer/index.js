@@ -1,4 +1,4 @@
-import { GET_ALL_VIDEOGAMES } from "../actions";
+import { GET_ALL_VIDEOGAMES,ORDER_BY_NAME } from "../actions";
 
 
 const initialState = {
@@ -14,6 +14,13 @@ switch (action.type) {
             ...state,
             videoGames: action.payload
         };
+    case ORDER_BY_NAME:
+        
+    
+        return {
+            ...state,
+            videoGames: action.payload
+        }
     default:
         return state;
 }

@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const axios = require('axios')
-const {getAllApi, getAllDb, getApiGamesByName, getDbGamesByName, getApiGameById, getDbGameById, getApiGenres, createGame, paginatedVideoGames} = require('./controllers')
+const {getAllApi, getAllDb, getApiGamesByName, getDbGamesByName, getApiGameById, getDbGameById, getApiGenres, createGame} = require('./controllers')
 const {Videogame, Genre} = require('../db')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -17,11 +17,11 @@ router.get("/videogames", async function (req, res) {
     let {name} = req.query;
     try {
         
-        // const apiInfo = await getAllApi();
-        // const dbInfo = await getAllDb ();
-        // const totalGames = apiInfo.concat(dbInfo);
+        const apiInfo = await getAllApi();
+        const dbInfo = await getAllDb ();
+        const totalGames = apiInfo.concat(dbInfo);
 
-        const paginatedVg = await paginatedVideoGames();
+        // const paginatedVg = await paginatedVideoGames();
        
         if (name) {
             name = name.toLowerCase()
@@ -35,7 +35,7 @@ router.get("/videogames", async function (req, res) {
                 return res.status(400).send("No se han encontrados juegos que coincidan con la búsqueda");
         }
             else {
-                res.status(200).send(paginatedVg);
+                res.status(200).send(totalGames);
             }
     } catch(error){
         console.log(error);

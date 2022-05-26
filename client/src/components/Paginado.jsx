@@ -5,23 +5,25 @@ import styles from "../Styles/Paginado.module.css"
 
 
 
-export default function Paginado ({paginado}) {
-const allGames = useSelector((state) => state.videoGames);
+export default function Paginado ({paginado, videoGamesPerPage, allGames}) {
+
 const pageNumbers = [];
 
-for (let i = 0; i<allGames.length; i++ ){
-    pageNumbers.push(i + 1);
+for (let i = 1; i<=Math.ceil(allGames/videoGamesPerPage); i++ ){
+    pageNumbers.push(i);
 }
 
 return (
     <nav className={styles.paginado}>
         <ul className="paginado">
             {
-             pageNumbers && pageNumbers.map (num => (
+             pageNumbers && pageNumbers.map (num => {
+                 return (
                  <li className="number" key={num}>
-                     <button onClick = {() => paginado(num -1)} key={num} className='button'>{num}</button>
+                     <button onClick = {() => paginado(num)} key={num} className='button'>{num}</button>
                  </li>
-             ))   
+                 )
+             })   
             }
         </ul>
     </nav>

@@ -1,5 +1,7 @@
 import axios from 'axios';
 export const GET_ALL_VIDEOGAMES = 'GET_ALL_VIDEOGAMES'
+export const ORDER_BY_NAME = 'ORDER_BY_NAME'
+
 
 export function getAllVideoGames () {
     return async (dispatch) => {
@@ -17,5 +19,16 @@ export function getAllVideoGames () {
             console.log(error)
              }
     
-    }
+    };
+};
+
+export function orderByName(payload) {
+    return (dispatch) => {
+    return dispatch (
+        {
+            type: ORDER_BY_NAME,
+            payload
+        }
+    );
 }
+};

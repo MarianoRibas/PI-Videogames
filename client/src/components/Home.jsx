@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useState,useEffect } from 'react';
-import {getAllVideoGames} from '../actions';
+import {getAllVideoGames, orderByName} from '../actions';
 import {Link} from 'react-router-dom';
 import Game from "./Game"
 import Paginado from './Paginado';
@@ -12,15 +12,21 @@ export default function Home () {
     const dispatch = useDispatch();
     const allGames = useSelector((state) => state.videoGames);
     const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = Math.ceil(allGames.length/15);
+    const indexLastGame = currentPage * 15;
+    const indexFirstGame = indexLastGame - 15;
+    const currentGames = allGames.slice(indexFirstGame, indexLastGame); //juegos en cada pagina
+
+
 
 const paginado = (pageNum) => {
     setCurrentPage(pageNum);
 };
 
 
-    useEffect (() => {
-        dispatch(getAllVideoGames());
-    },[dispatch])
+    // useEffect (() => {
+    //     dispatch(getAllVideoGames());
+    // },[dispatch])
 
     
     function handleReload (e) {
@@ -35,7 +41,7 @@ const paginado = (pageNum) => {
         <button onClick={e => {handleReload(e)}}>Re-load All Games</button>
              
         <div>    
-            <select>
+            <select onChange={e => {dispatch(orderByName(e.target.value))}}>
                 <option value="">Order by Name</option>
                 <option value='desc'>Descending</option>
                 <option value='asc'>Ascending</option>
@@ -77,18 +83,29 @@ const paginado = (pageNum) => {
         </div>
 
         <div>
-            <Paginado paginado={paginado}/>
+            <Paginado paginado={paginado} videoGamesPerPage ={15} allGames = {allGames.length} />
             {console.log(currentPage)}
         </div>
         <div>
-        {allGames && allGames[currentPage].map ((e) => { 
-                return ( 
-                <div>
-                {/* <Game name ={e.name} genres ={e.genres} image = {e.image} key = {e.id} /> */}
-                <Game name ={e.name} key = {e.id} />
+        {
+            (currentGames.length > 0) ? 
+            <div>
+            {
+                currentGames.map((e, index) => (
+                <div key={index}>
+                <Link to={"/videogame/" + e.id}>
+                <Game
+                name={e.name}
+                image={e.image}
+                genres={e.genres.map((s, index) => (<li key={index}>{s}</li>))} />
+                </Link>
                 </div>
-                );
-        })}
+
+                ))
+            }
+            </div>  : <h2>Loading ...</h2>
+        }
+        
         </div>
              
              </div>

@@ -56,6 +56,29 @@ const getAllDb = async function (){
     return allDbGames;
 };
 
+const paginatedVideoGames = async function () {
+    const apiInfo = await getAllApi();
+    const dbInfo = await getAllDb ();
+    const totalGames = apiInfo.concat(dbInfo);
+
+    let paginatedGames = [];
+    const pageNumber = Math.ceil(totalGames.length/15);
+    let pageCounter = 1;
+    
+
+    
+    for (let i = 0; i<=pageNumber - 1; i++) {
+        const indexLastGame = pageCounter * 15;
+        const indexFirstGame = indexLastGame - 15;
+        paginatedGames[i] = totalGames.slice(indexFirstGame, indexLastGame);
+        pageCounter++;
+    };
+
+    return paginatedGames;
+
+
+}
+
 const getApiGamesByName = async function (name) {
     const apiGet = await axios.get (`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`);
     const apiGamesByname = await apiGet.data.results.map (e => {
@@ -121,12 +144,12 @@ const getApiGenres = async function () {
     return dbGenres;
 };
 
-const createGame = async function (name, description, releaseDate, rating, genres, platforms) {
-    let createdGame = await Videogame.create({name,description,releaseDate,rating, platforms});
-    return createdGame;
+const createGame = async function (name, description, releaseDate, rating, platforms) {
+    let createdGame = await Videogame.create({name, description, releaseDate, rating, platforms});
+    return "OK";
 }
 
 
 
 
-module.exports = {getAllApi, getAllDb, getApiGamesByName, getDbGamesByName, getApiGameById, getDbGameById, getApiGenres, createGame}
+module.exports = {getAllApi, getAllDb, getApiGamesByName, getDbGamesByName, getApiGameById, getDbGameById, getApiGenres, createGame, paginatedVideoGames}

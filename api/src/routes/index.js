@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const axios = require('axios')
-const {getAllApi, getAllDb, getApiGamesByName, getDbGamesByName, getApiGameById, getDbGameById, getApiGenres, createGame} = require('./controllers')
-
+const {getAllApi, getAllDb, getApiGamesByName, getDbGamesByName, getApiGameById, getDbGameById, getApiGenres, createGame, paginatedVideoGames} = require('./controllers')
+const {Videogame, Genre} = require('../db')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -17,9 +17,11 @@ router.get("/videogames", async function (req, res) {
     let {name} = req.query;
     try {
         
-        const apiInfo = await getAllApi();
-        const dbInfo = await getAllDb ();
-        const totalGames = apiInfo.concat(dbInfo);
+        // const apiInfo = await getAllApi();
+        // const dbInfo = await getAllDb ();
+        // const totalGames = apiInfo.concat(dbInfo);
+
+        const paginatedVg = await paginatedVideoGames();
        
         if (name) {
             name = name.toLowerCase()
@@ -33,7 +35,7 @@ router.get("/videogames", async function (req, res) {
                 return res.status(400).send("No se han encontrados juegos que coincidan con la búsqueda");
         }
             else {
-                res.status(200).send(totalGames);
+                res.status(200).send(paginatedVg);
             }
     } catch(error){
         console.log(error);
@@ -63,7 +65,7 @@ router.get("/videogame/:id", async function (req, res){
         
     } catch (error) {
         console.log(error);
-        res.status(404).send(error);
+        res.status(404).send("No existe un juego con dicho ID");
     }
     
 });
@@ -81,8 +83,14 @@ router.get ("/genres", async function (req, res){
 router.post("/videogame", async function (req, res){
     const {name, description, releaseDate, rating, genres, platforms } = req.body;
 
-    const created = createGame(name, description, releaseDate, rating, platforms);
-    if (created) return res.status(200).send("Juego creado exitosamente");
+    const created = await Videogame.create({name, description,releaseDate, rating, platforms});
+    const genresDb = await Genre.findAll({
+        where: {name: genres}
+    });
+
+    created.addGenre(genresDb);
+    return res.status(200).send("Juego creado exitosamente");
+    // res.send({name, description, releaseDate, rating, platforms})
 })
 
 

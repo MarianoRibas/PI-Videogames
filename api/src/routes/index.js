@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const axios = require('axios')
-const {getAllApi, getAllDb, getApiGamesByName, getDbGamesByName, getApiGameById, getDbGameById, getApiGenres, createGame} = require('./controllers')
+const {getAllApi, getAllDb, getApiGamesByName, getDbGamesByName, getApiGameById, getDbGameById, getApiGenres, createGame, getAllVideoGames} = require('./controllers')
 const {Videogame, Genre} = require('../db')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -14,13 +14,14 @@ const router = Router();
 
 
 router.get("/videogames", async function (req, res) {
-    let {name} = req.query;
+    let {name, genre} = req.query;
+    // const {genre} = req.body;
     try {
         
-        const apiInfo = await getAllApi();
-        const dbInfo = await getAllDb ();
-        const totalGames = apiInfo.concat(dbInfo);
-
+        // const apiInfo = await getAllApi();
+        // const dbInfo = await getAllDb ();
+        // const totalGames = apiInfo.concat(dbInfo);
+        const totalGames = await getAllVideoGames(genre);
         // const paginatedVg = await paginatedVideoGames();
        
         if (name) {

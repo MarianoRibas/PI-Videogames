@@ -102,6 +102,18 @@ const getDbGamesByName = async function (name) {
     return matchDbGames;
 };
 
+const getAllVideoGames = async function (genre) {
+    const apiGames = await getAllApi();
+    const dbGames = await getAllDb();
+    const totalGames = apiGames.concat(dbGames);
+    if (!genre) {
+        return totalGames;
+    } else {
+        const filteredGames = await totalGames.filter(e => e.genres.includes(genre));
+        return filteredGames;
+    }
+}
+
 const getApiGameById = async function (id) {
 
     const apiResult = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
@@ -152,4 +164,4 @@ const createGame = async function (name, description, releaseDate, rating, platf
 
 
 
-module.exports = {getAllApi, getAllDb, getApiGamesByName, getDbGamesByName, getApiGameById, getDbGameById, getApiGenres, createGame}
+module.exports = {getAllApi, getAllDb, getApiGamesByName, getDbGamesByName, getApiGameById, getDbGameById, getApiGenres, createGame, getAllVideoGames}

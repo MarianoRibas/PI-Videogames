@@ -1,6 +1,6 @@
 import './App.css';
 import {BrowserRouter, Route, Switch, Routes} from 'react-router-dom'
-import Home from "./components/Home";
+import Home from "./components/Home.jsx";
 import LandingPage from "./components/LandingPage";
 import Game from './components/Game';
 

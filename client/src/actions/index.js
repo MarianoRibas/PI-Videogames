@@ -9,7 +9,8 @@ export const DELETE_SEARCHED = 'DELETE_SEARCHED';
 export const DELETE= 'DELETE';
 export const GET_DETAIL = "GET_DETAIL";
 export const DELETE_DETAIL = 'DELETE_DETAIL';
-
+export const GET_GENRES = 'GET_GENRES';
+export const POST_GAME = 'POST_GAME';
 
 
 // ACTIONS:
@@ -150,6 +151,44 @@ export function deleteDetail () {
         payload: []
     };
 };
+
+export function getGenres() {
+    return async (dispatch) => {
+        try {
+        const genres = await axios ('http://localhost:3001/genres')
+        
+        return dispatch(
+            {
+            type: GET_GENRES,
+            payload: genres.data
+                }
+            );
+    
+        } catch (error) {
+            console.log(error)
+             };
+    
+    };
+};
+
+export function createGame (game) {
+    return async (dispatch) => {
+        try {
+        const newGame = await axios.post('http://localhost:3001/videogame', game)
+        
+        return dispatch(
+            {
+            type: POST_GAME,
+            newGame
+                }
+            );
+    
+        } catch (error) {
+            console.log(error)
+             };
+    
+    };
+}
 
 
 

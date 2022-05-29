@@ -1,4 +1,4 @@
-import {GET_ALL_VIDEOGAMES, ORDER, FILTER,GET_VIDEOGAMES_BY_NAME, SEARCHED_GAME, DELETE_SEARCHED, DELETE, GET_DETAIL, DELETE_DETAIL} from "../actions";
+import {GET_ALL_VIDEOGAMES, ORDER, FILTER,GET_VIDEOGAMES_BY_NAME, SEARCHED_GAME, DELETE_SEARCHED, DELETE, GET_DETAIL, DELETE_DETAIL, POST_GAME, GET_GENRES} from "../actions";
 
 
 const initialState = {
@@ -6,7 +6,8 @@ const initialState = {
     videoGames: [],
     genres: [],
     detail: [],
-    lastGameSearched: ""
+    lastGameSearched: "",
+    allPlatforms:[]
 };
 
 
@@ -107,6 +108,17 @@ switch (action.type) {
             detail: action.payload
         };
         
+    case GET_GENRES: 
+    return {
+        ...state,
+        genres: action.payload
+    };
+
+    case POST_GAME:
+        return {
+            ...state
+        };
+    
     default:
         return state;
 }

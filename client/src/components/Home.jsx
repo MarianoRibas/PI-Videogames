@@ -36,7 +36,7 @@ const paginado = (pageNum) => {
 
 useEffect (() => {dispatch(deleteDetail())}, [])
 
-//Reload 
+//Recarga todos los juegos:
 function handleReload (e) {
         firstUpdate1.current = true;
         firstUpdate2.current = true;
@@ -51,7 +51,10 @@ function handleReload (e) {
         setOrder("");    
 };
 
-// para juntar filtrado (BACK)
+// FILTROS: (BACK)
+
+// Es una sola action que con dos useEffect que se dispara enviando un objeto como payload. Cada Hook esta pendiente si se cambia el valor de cada filtro. Se envia en una sola action para poder juntar ambos filtros
+
 //cuando se cambia el filtro por género:
 let firstUpdate1 = useRef(true);
 let firstUpdate2 = useRef(true);
@@ -78,7 +81,7 @@ useEffect (() => {
 },[filteredBySource]);
 
 
-// para ordenar (FRONT)
+// ORDENAR: (FRONT)
 
 function handleOrder (e) {
     e.preventDefault();
@@ -150,7 +153,7 @@ return (
                 <div className={styles.divFilter}>   
                     <select classname= {styles.select} onChange={(e) => 
                     {setFilteredByGenre({...filteredByGenre, name:e.target.value, activated: true}) 
-                    dispatch(deleteAll())}}>
+                    }}>
                 <option value="">Filter by Genre</option>
                 <option value="Strategy">Strategy</option>
                 <option value="Adventure">Adventure</option>

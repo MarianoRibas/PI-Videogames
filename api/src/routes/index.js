@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const axios = require('axios')
-const {getAllApi, getAllDb, getApiGamesByName, getDbGamesByName, getApiGameById, getDbGameById, getApiGenres, createGame, getAllVideoGames} = require('./controllers')
+const {getApiGameById, getDbGameById, getApiGenres, getAllVideoGames, getFilteredBySource, getFilteredByGenre, getAllGamesByName, filter} = require('./controllers')
 const {Videogame, Genre} = require('../db')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -12,39 +12,72 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 
-
-router.get("/videogames", async function (req, res) {
-    let {name, genre} = req.query;
-    // const {genre} = req.body;
-    try {
-        
-        // const apiInfo = await getAllApi();
-        // const dbInfo = await getAllDb ();
-        // const totalGames = apiInfo.concat(dbInfo);
-        const totalGames = await getAllVideoGames(genre);
-        // const paginatedVg = await paginatedVideoGames();
-       
-        if (name) {
-            name = name.toLowerCase()
-            const apiGamesByName = await getApiGamesByName(name);
-            // res.status(200).send(apiGamesByName);
-            const dbGamesByName = await getDbGamesByName(name);
-            const allGamesByName = apiGamesByName.concat(dbGamesByName);
-            if (allGamesByName.length >= 1) {
-                return res.status(200).send(allGamesByName)
-                } else
-                return res.status(400).send("No se han encontrados juegos que coincidan con la búsqueda");
-        }
-            else {
-                res.status(200).send(totalGames);
-            }
-    } catch(error){
-        console.log(error);
-        res.status(404).send(error);
-    }
+router.get("/videogames", async function (req, res){
+    let {name, genre, source} = req.query
     
-    // return res.status(200).send(totalGames);
+    try {
+        if (name) {
+            name = name.toLowerCase();
+            const allGamesByName = await getAllGamesByName(name);
+            if (allGamesByName.length >= 1) {
+                if (genre || source) {
+                    const filteredGames = await filter(allGamesByName, source, genre);
+                    return res.status(200).send(filteredGames);
+            } else 
+                return res.status(200).send(allGamesByName);
+        } else {
+            res.status(404).send("No se han encontrados juegos que coincidan con la búsqueda")
+        }
+    };
+        if (genre || source) {
+        const allGames = await getAllVideoGames ();
+        const filteredGames = await filter(allGames, source, genre);
+        return res.status(200).send(filteredGames);  
+    };
+        const allGames = await getAllVideoGames ();
+        res.status(200).send(allGames);
+    } catch (e) {
+        console.log(e)
+    };
 });
+
+
+
+// router.get("/videogames", async function (req, res) {
+//     const {name} = req.query;
+//     const {genre, source} = req.params
+//     try {
+       
+//         if (name) {
+//             name = name.toLowerCase()
+//             const allGamesByName = getAllGamesByName (name);
+//             if (allGamesByName.length >= 1) {
+//                 return res.status(200).send(allGamesByName)
+//                 } else
+//                 return res.status(400).send("No se han encontrados juegos que coincidan con la búsqueda");
+//         }
+//         else 
+//         if (source){
+//                 if (genre) {
+                    
+//                 }
+//                 const filtBySource = await getFilteredBySource(source);
+//                 res.status(200).send(filtBySource);
+//         }
+//         else 
+//         if (genre){
+//                 const filtByGenre = await getFilteredByGenre(genre);
+//                 res.status(200).send(filtByGenre);
+//         }
+//         else {
+//                 const totalGames = await getAllVideoGames();
+//                 res.status(200).send(totalGames);
+//             }
+//     } catch(error){
+//         console.log(error);
+//         res.status(404).send(error);
+//     }
+// });
 
 router.get("/videogame/:id", async function (req, res){
     let {id} = req.params;

@@ -1,10 +1,11 @@
-import {GET_ALL_VIDEOGAMES, ORDER, FILTER,GET_VIDEOGAMES_BY_NAME, SEARCHED_GAME, DELETE_SEARCHED, DELETE} from "../actions";
+import {GET_ALL_VIDEOGAMES, ORDER, FILTER,GET_VIDEOGAMES_BY_NAME, SEARCHED_GAME, DELETE_SEARCHED, DELETE, GET_DETAIL, DELETE_DETAIL} from "../actions";
 
 
 const initialState = {
     
     videoGames: [],
     genres: [],
+    detail: [],
     lastGameSearched: ""
 };
 
@@ -94,6 +95,18 @@ switch (action.type) {
             videoGames: action.payload
         };
     
+    case GET_DETAIL:
+        return {
+            ...state,
+            detail:action.payload
+        };
+    
+    case DELETE_DETAIL:
+        return {
+            ...state,
+            detail: action.payload
+        };
+        
     default:
         return state;
 }

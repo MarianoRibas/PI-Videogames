@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useState, useEffect } from 'react';
-import {getAllVideoGames, orderBy, filterBy, deleteSearchedGame, deleteAll} from '../actions';
+import {getAllVideoGames, orderBy, filterBy, deleteSearchedGame, deleteAll, deleteDetail} from '../actions';
 import {Link} from 'react-router-dom';
 import Game from "./Game"
 import Paginado from './Paginado';
@@ -32,6 +32,9 @@ const paginado = (pageNum) => {
 
 // HANDLES PARA FILTROS,ORDENAMIENTOS Y RELOAD  
 
+//Borra el detail para que cuando se cargue el proximo detalle no se muestre el detalle que quedo en el store.detail
+
+useEffect (() => {dispatch(deleteDetail())}, [])
 
 //Reload 
 function handleReload (e) {
@@ -139,25 +142,29 @@ return (
 
         <div>
             <Paginado paginado={paginado} videoGamesPerPage ={15} allGames = {allGames.length} />
-        </div>
         
-        <div >
         {
-            (currentGames.length > 0) ? 
-             <div className={styles.container}>
-               {currentGames.map((e, index) => (
-                <div key={index}>
-                <Link to={"/videogame/" + e.id}>
-                <Game
-                name={e.name}
-                image={e.image}
-                genres={e.genres.map((s, index) => (<li key={index}>{s}</li>))} />
-                </Link>
-                </div>
-                ))}
-             </div>  
-            : <p>Loading...</p>
-        } 
+                (currentGames.length > 0) ? 
+                    <div className={styles.conteiner}>
+                        {
+                            currentGames.map((e, index) => (
+                                <div key={index}>
+                                    
+                                        <Game
+                                            id={e.id}
+                                            name={e.name}
+                                            image={e.image}
+                                            genres={e.createdInDb ?
+                                            e.genres.map((s, index) => (<li key={index}>{s.name}</li>)) :
+                                            e.genres.map((s, index) => (<li key={index}>{s}</li>))} />
+                                        
+                                    
+                                </div>
+
+                            ))
+                        }
+                    </div>  : <h2>Loading ...</h2>
+                    }
         </div>
         
         <div>

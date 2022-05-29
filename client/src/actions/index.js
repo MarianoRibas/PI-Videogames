@@ -7,6 +7,8 @@ export const GET_VIDEOGAMES_BY_NAME = 'GET_VIDEOGAMES_BY_NAME';
 export const SEARCHED_GAME = 'SEARCHED_GAME';
 export const DELETE_SEARCHED = 'DELETE_SEARCHED';
 export const DELETE= 'DELETE';
+export const GET_DETAIL = "GET_DETAIL";
+export const DELETE_DETAIL = 'DELETE_DETAIL';
 
 
 
@@ -116,6 +118,27 @@ export function filterBy (payload) {
             console.log(error)
             };
     
+    };
+};
+
+export function getDetail (id) {
+    return async function(dispatch){
+        try{
+            const game = await axios.get(`http://localhost:3001/videogame/${id}`)
+            return dispatch({
+                type: GET_DETAIL,
+                payload: game.data
+            })
+        } catch(e){
+            console.log(e)
+        }
+    }
+};
+
+export function deleteDetail () {
+    return {
+        type: DELETE_DETAIL,
+        payload: []
     };
 };
 

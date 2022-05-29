@@ -50,13 +50,20 @@ a{
     position: relative;
     top: 1.5%;
     color: rgba(0, 0, 0, 0);
+    border-width: 130px;
+    border-color: #0a1128;
+    border-radius: 6px;
+    font-size: 150px;
+    margin-right: 26px;
+    
     
 }
 .divFilter{
     display: flex;
     justify-content: left;
     position: relative;
-    top: 1.5%; 
+    top: 1.5%;
+     
 }
 /* .select{
     border-width: 150px;
@@ -74,9 +81,11 @@ a{
 }
 .conteiner{
     display: grid;
-    grid-template-columns: auto auto auto;
-    gap: 2rem;
+    grid-template-columns: auto;
+    gap: 3rem;
     align-items: start;
+    
+
 }
 .link{
     margin-bottom: 13px;

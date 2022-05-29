@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch, Routes} from 'react-router-dom'
 import Home from "./components/Home.jsx";
 import LandingPage from "./components/LandingPage";
 import Game from './components/Game';
+import GameDetail from './components/GameDetail';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route exact path = "/" element={<LandingPage />}/>
       <Route path = "/home" element={<Home />}/>
       <Route path = "/home" element={<Game />}/>
+      <Route exact path='/videogame/:id' element={<GameDetail/>}/>
       </Routes>
     </div>
     </BrowserRouter>

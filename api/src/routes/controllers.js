@@ -3,6 +3,8 @@ require("dotenv").config();
 const { Videogame, Genre } = require('../db');
 const { API_KEY } = process.env;
 
+
+//GET ALL:
 const getAllApi = async function () {
     const apiGet1 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page_size=40`);
     const apiGet2 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=2&page_size=40`);
@@ -56,29 +58,15 @@ const getAllDb = async function (){
     return allDbGames;
 };
 
-// const paginatedVideoGames = async function () {
-//     const apiInfo = await getAllApi();
-//     const dbInfo = await getAllDb ();
-//     const totalGames = apiInfo.concat(dbInfo);
-
-//     let paginatedGames = [];
-//     const pageNumber = Math.ceil(totalGames.length/15);
-//     let pageCounter = 1;
-    
-
-    
-//     for (let i = 0; i<=pageNumber - 1; i++) {
-//         const indexLastGame = pageCounter * 15;
-//         const indexFirstGame = indexLastGame - 15;
-//         paginatedGames[i] = totalGames.slice(indexFirstGame, indexLastGame);
-//         pageCounter++;
-//     };
-
-//     return paginatedGames;
+const getAllVideoGames = async function () {
+    const apiGames = await getAllApi();
+    const dbGames = await getAllDb();
+    const totalGames = apiGames.concat(dbGames);
+    return totalGames;
+}
 
 
-// }
-
+// GET POR NOMBRE
 const getApiGamesByName = async function (name) {
     const apiGet = await axios.get (`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`);
     const apiGamesByname = await apiGet.data.results.map (e => {
@@ -102,18 +90,15 @@ const getDbGamesByName = async function (name) {
     return matchDbGames;
 };
 
-const getAllVideoGames = async function (genre) {
-    const apiGames = await getAllApi();
-    const dbGames = await getAllDb();
-    const totalGames = apiGames.concat(dbGames);
-    if (!genre) {
-        return totalGames;
-    } else {
-        const filteredGames = await totalGames.filter(e => e.genres.includes(genre));
-        return filteredGames;
-    }
+const getAllGamesByName = async function (name) {
+    const apiGamesByName = await getApiGamesByName (name);
+    const dbGamesByName = await getDbGamesByName (name);
+    const allGamesByName = apiGamesByName.concat(dbGamesByName);
+    return allGamesByName; 
 }
 
+
+// GET POR ID
 const getApiGameById = async function (id) {
 
     const apiResult = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
@@ -144,6 +129,8 @@ const getDbGameById = async function (id) {
     return dbVideogameById;
 };
 
+
+// GET GÉNEROS
 const getApiGenres = async function () {
     const getApiGenres = await axios.get (`https://api.rawg.io/api/genres?key=${API_KEY}`);
     const apiGenres = getApiGenres.data.results.map (e => e.name);
@@ -156,12 +143,63 @@ const getApiGenres = async function () {
     return dbGenres;
 };
 
+
+// POST JUEGO
 const createGame = async function (name, description, releaseDate, rating, platforms) {
     let createdGame = await Videogame.create({name, description, releaseDate, rating, platforms});
     return "OK";
+};
+
+
+
+// FILTROS
+const getFilteredByGenre = async function (genre) {
+    const totalGames = await getAllVideoGames();
+    const filteredGamesByGenre = await totalGames.filter(e => e.genres.includes(genre));
+    return filteredGamesByGenre; 
+};
+
+const getFilteredBySource = async function (source) {
+    const apiGames = await getAllApi();
+    const dbGames = await getAllDb();
+    const totalGames = apiGames.concat(dbGames);
+    if (source === 'existant') {
+    const filteredGamesBySource = await totalGames.filter(e => Number(e.id));
+        return filteredGamesBySource;
+    } else {
+        const filteredGamesBySource = await totalGames.filter(e => e.id.length >= 7);
+        return filteredGamesBySource;
+    }
+};
+
+const filter = async function (games,source, genre) {
+    
+    if (genre && source) {
+        const filteredByGenre = games.filter(e => e.genres.includes(genre));
+        if (source === 'existant') {
+            const filteredBoth = filteredByGenre.filter(e => Number(e.id));
+                return filteredBoth;
+            } else {
+                const filteredBoth = filteredByGenre.filter(e => e.id.length >= 7);
+                return filteredBoth;
+            }
+    } else 
+    if (genre && !source) {
+        const filteredByGenre = games.filter(e => e.genres.includes(genre));
+        return filteredByGenre;  
+    } else 
+    if (!genre && source){
+        if (source === 'existant') {
+            const filteredBySource = games.filter(e => Number(e.id));
+                return filteredBySource;
+            } else {
+                const filteredBySource = games.filter(e => e.id.length >= 7);
+                return filteredBySource;
+            }
+    }
 }
 
 
 
 
-module.exports = {getAllApi, getAllDb, getApiGamesByName, getDbGamesByName, getApiGameById, getDbGameById, getApiGenres, createGame, getAllVideoGames}
+module.exports = {getAllApi, getAllDb, getApiGamesByName, getDbGamesByName, getApiGameById, getDbGameById, getApiGenres, createGame, getAllVideoGames, getFilteredBySource, getFilteredByGenre, filter, getAllGamesByName}

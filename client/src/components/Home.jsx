@@ -1,10 +1,11 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useState, useEffect } from 'react';
-import {getAllVideoGames, filterByGenre, filterBySource, orderBy, filterBy} from '../actions';
+import {getAllVideoGames, filterByGenre, filterBySource, orderBy, filterBy, deleteSearchedGame} from '../actions';
 import {Link} from 'react-router-dom';
 import Game from "./Game"
 import Paginado from './Paginado';
+import SearchBar from './SearchBar';
 
 
 
@@ -41,28 +42,18 @@ useEffect (() => {
 
 
 // HANDLES PARA FILTROS,ORDENAMIENTOS Y RELOAD  
+
+
+//Reload 
 function handleReload (e) {
         dispatch(getAllVideoGames());
         setCurrentPage(1);
-        setRandomState(Math.random())
+        dispatch(deleteSearchedGame());
+        setRandomState(Math.random());
         setOrder("");
         // s
        
 };
-
-// function handleFilterByGenre (e) {
-//     e.preventDefault();
-//     dispatch(filterByGenre(e.target.value));
-//     setFilterBySource(e.target.value);
-// };
-
-// function handleFilterBySource (e) {
-//     e.preventDefault();
-//     dispatch(filterBySource(e.target.value));
-    
-//     setFilterBySource(e.target.value);
-
-// }
 
 
 // para juntar filtrado (BACK)
@@ -96,7 +87,9 @@ function handleOrder (e) {
         <h1>HOME</h1>
         <Link to='/videogame'>Create Game</Link>
         <button onClick={e => {handleReload(e)}}>Re-load All Games</button>
-            
+        <div>
+        <SearchBar />
+        </div>   
         <div >    
             <select onChange={e => {handleOrder(e)}}>
                 <option value="">Order by Name</option>

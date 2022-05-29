@@ -1,4 +1,4 @@
-import {GET_ALL_VIDEOGAMES, ORDER, FILTER} from "../actions";
+import {GET_ALL_VIDEOGAMES, ORDER, FILTER,GET_VIDEOGAMES_BY_NAME, SEARCHED_GAME, DELETE_SEARCHED} from "../actions";
 
 
 const initialState = {
@@ -12,6 +12,24 @@ const initialState = {
 function reducer (state = initialState, action) {
 switch (action.type) {
     case GET_ALL_VIDEOGAMES:
+        return {
+            ...state,
+            videoGames: action.payload
+        };
+    
+    case SEARCHED_GAME: 
+        return {
+            ...state,
+            lastGameSearched: action.payload
+        };
+    
+    case DELETE_SEARCHED:
+        return {
+            ...state,
+            lastGameSearched: action.payload
+        };
+
+    case GET_VIDEOGAMES_BY_NAME: 
         return {
             ...state,
             videoGames: action.payload

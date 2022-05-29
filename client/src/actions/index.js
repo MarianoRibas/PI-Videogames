@@ -4,6 +4,8 @@ export const GET_ALL_VIDEOGAMES = 'GET_ALL_VIDEOGAMES';
 export const ORDER = 'ORDER';
 export const FILTER ='FILTER';
 export const GET_VIDEOGAMES_BY_NAME = 'GET_VIDEOGAMES_BY_NAME';
+export const SEARCHED_GAME = 'SEARCHED_GAME';
+export const DELETE_SEARCHED = 'DELETE_SEARCHED';
 
 
 
@@ -28,13 +30,27 @@ export function getAllVideoGames () {
     };
 };
 
+export function searchedGame (payload) {
+    return {
+        type: SEARCHED_GAME,
+        payload
+    };
+};
+
+export function deleteSearchedGame () {
+    return {
+        type: DELETE_SEARCHED,
+        payload: ""
+    };
+};
+
 export function getGamesByName (payload) {
     return async function(dispatch){
         try{
-            var json = await axios.get(`http://localhost:3001/videogames?name=${payload}`)
+            const gamesByName = await axios.get(`http://localhost:3001/videogames?name=${payload}`)
             return dispatch({
                 type: GET_VIDEOGAMES_BY_NAME,
-                payload: json.data
+                payload: gamesByName.data
             });
         } catch(e){
             console.log(e)
@@ -94,6 +110,8 @@ export function filterBy (payload) {
     
     };
 };
+
+
 
 
 

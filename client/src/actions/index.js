@@ -87,8 +87,8 @@ export function filterBy (payload) {
                 }
             );
         } else 
-        if (!payload.name && payload.source && payload.genre) {
-            const allGames = await axios (`http://localhost:3001/videogames?source=${payload.source}&genre=${payload.genre}`)
+        if (!payload.name && payload.source.name && payload.genre.name) {
+            const allGames = await axios (`http://localhost:3001/videogames?source=${payload.source.name}&genre=${payload.genre.name}`)
             return dispatch(
                 {
                 type: FILTER,
@@ -96,8 +96,8 @@ export function filterBy (payload) {
                     }
                 );   
         } else 
-        if (!payload.name && !payload.source && payload.genre) {
-            const allGames = await axios (`http://localhost:3001/videogames?genre=${payload.genre}`)
+        if (!payload.name && !payload.source.name && payload.genre.name) {
+            const allGames = await axios (`http://localhost:3001/videogames?genre=${payload.genre.name}`)
             return dispatch(
                 {
                 type: FILTER,
@@ -105,8 +105,17 @@ export function filterBy (payload) {
                     }
                 );    
         } else 
-        if (!payload.name && payload.source && !payload.genre) {
-            const allGames = await axios (`http://localhost:3001/videogames?source=${payload.source}`);
+        if (!payload.name && payload.source.name && !payload.genre.name) {
+            const allGames = await axios (`http://localhost:3001/videogames?source=${payload.source.name}`);
+            return dispatch(
+                {
+                type: FILTER,
+                payload: allGames.data
+                    }
+                );    
+        };
+        if (!payload.name && payload.source.activated === false && payload.genre.activated === false) {
+            const allGames = await axios (`http://localhost:3001/videogames`);
             return dispatch(
                 {
                 type: FILTER,

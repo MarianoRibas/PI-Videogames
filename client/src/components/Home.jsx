@@ -1,11 +1,13 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useState, useEffect } from 'react';
-import {getAllVideoGames, filterByGenre, filterBySource, orderBy, filterBy, deleteSearchedGame} from '../actions';
+import {getAllVideoGames, orderBy, filterBy, deleteSearchedGame, deleteAll} from '../actions';
 import {Link} from 'react-router-dom';
 import Game from "./Game"
 import Paginado from './Paginado';
 import SearchBar from './SearchBar';
+import styles from '../Styles/Home.module.css'
+
 
 
 
@@ -19,51 +21,37 @@ export default function Home () {
     const [randomState, setRandomState] = useState(0);
     const [filteredByGenre, setFilteredByGenre] = useState ("");
     const [filteredBySource, setFilteredBySource] = useState ("");
-    const [filter, setFilter] = useState({});
     const indexLastGame = currentPage * 15;
     const indexFirstGame = indexLastGame - 15;
-    const currentGames = allGames.slice(indexFirstGame, indexLastGame) ; //juegos en cada pagina
-    let c =  1
+    const currentGames = allGames? allGames.slice(indexFirstGame, indexLastGame) : 0 ; //juegos en cada pagina
 
 
 const paginado = (pageNum) => {
     setCurrentPage(pageNum);
 };
 
-
-// PARA ORDENAR POST FILTRADO, SI ES Q HAY UN ORDENAMIENTO PUESTO
-
-useEffect (() => {
-    dispatch(orderBy(order));
-    setCurrentPage(1);
-    setRandomState(Math.random())
-    
-},[allGames]);
-
-
 // HANDLES PARA FILTROS,ORDENAMIENTOS Y RELOAD  
 
 
 //Reload 
 function handleReload (e) {
+        dispatch(deleteAll());
+        setFilteredByGenre("");
+        setFilteredBySource("");
         dispatch(getAllVideoGames());
         setCurrentPage(1);
         dispatch(deleteSearchedGame());
         setRandomState(Math.random());
-        setOrder("");
-        // s
-       
+        setOrder("");    
 };
-
 
 // para juntar filtrado (BACK)
 //cuando se cambia el filtro por género:
-useEffect (() => {
-    
+useEffect (() => { 
     let newFilt = {name: lastGameSearched, genre: filteredByGenre, source: filteredBySource};
-    console.log(newFilt)
     dispatch(filterBy(newFilt))
 },[filteredByGenre]);
+
 
 // cuando se cambia el filtro por fuente(api o DB):
 useEffect (() => {
@@ -79,29 +67,46 @@ function handleOrder (e) {
     dispatch(orderBy(e.target.value));
     setCurrentPage(1);
     setOrder(e.target.value)
-    let g = e.target.value;
+    // let g = e.target.value;
 };
 
-    return (
-            <div>
-        <h1>HOME</h1>
+// PARA ORDENAR POST FILTRADO, SI ES Q HAY UN ORDENAMIENTO PUESTO
+
+useEffect (() => {
+    dispatch(orderBy(order));
+    setCurrentPage(1);
+    setRandomState(Math.random())
+    
+},[allGames]);
+
+//   
+
+return (
+        <div>
+        <div className={styles.blur}>
+        <h1 className={styles.h1}>HOME</h1>
+        
+        <div className={styles.link}>
         <Link to='/videogame'>Create Game</Link>
-        <button onClick={e => {handleReload(e)}}>Re-load All Games</button>
+        <button classname= {styles.button2} onClick={e => {handleReload(e)}}>Re-load All Games</button>
+        </div>
+        
         <div>
         <SearchBar />
         </div>   
-        <div >    
-            <select onChange={e => {handleOrder(e)}}>
-                <option value="">Order by Name</option>
-                <option value='desc'>Descending</option>
-                <option value='asc'>Ascending</option>
-            </select>
-            <select onChange={e => {handleOrder(e)}} >
-                <option value=''>Order by Rating</option>
+        
+        <div className={styles.divOrder}>    
+            <select classname= {styles.select} onChange={e => {handleOrder(e)}}>
+                <option value="">Order by</option>
+                <option value='desc'>Name (A-Z)</option>
+                <option value='asc'>Name (Z-A)</option>
                 <option value='lowRating'>Lower Rating</option>
                 <option value='highRating'>Higher Rating</option>
             </select>
-            <select onChange={(e) => setFilteredByGenre(e.target.value)}>
+        </div>    
+        <div className={styles.divFilter}>   
+            <select classname= {styles.select} onChange={(e) => {setFilteredByGenre(e.target.value) 
+                dispatch(deleteAll())}}>
                 <option value="">Filter by Genre</option>
                 <option value="Strategy">Strategy</option>
                 <option value="Adventure">Adventure</option>
@@ -123,21 +128,23 @@ function handleOrder (e) {
                 <option value="Educational">Educational</option>
                 <option value="Card">Card</option>
             </select>      
-            <select onChange={(e) => setFilteredBySource(e.target.value)}>
+            <select classname= {styles.select} onChange={(e) => {setFilteredBySource(e.target.value)
+            dispatch(deleteAll())}}>
                 <option value="">Filter by Origin</option>
                 <option value="created">Created</option>
                 <option value="existant">Existant</option>
             </select>
-        </div>
+        </div>    
+        
 
         <div>
             <Paginado paginado={paginado} videoGamesPerPage ={15} allGames = {allGames.length} />
         </div>
         
-        <div>
+        <div >
         {
             (currentGames.length > 0) ? 
-             <div>
+             <div className={styles.container}>
                {currentGames.map((e, index) => (
                 <div key={index}>
                 <Link to={"/videogame/" + e.id}>
@@ -149,13 +156,16 @@ function handleOrder (e) {
                 </div>
                 ))}
              </div>  
-            : <h2>Loading ...</h2>
+            : <p>Loading...</p>
         } 
         </div>
         
+        <div>
+            <Paginado paginado={paginado} videoGamesPerPage ={15} allGames = {allGames.length} />
+        </div>
+        
              </div>
-
-             
+    </div>      
     )
 
 

@@ -1,9 +1,5 @@
 import React from "react";
-import {useDispatch, useSelector} from 'react-redux';
-import { useState,useEffect } from 'react';
 import styles from "../Styles/Paginado.module.css"
-
-
 
 export default function Paginado ({paginado, videoGamesPerPage, allGames}) {
 

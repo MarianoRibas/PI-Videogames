@@ -1,4 +1,4 @@
-import {GET_ALL_VIDEOGAMES, ORDER, FILTER,GET_VIDEOGAMES_BY_NAME, SEARCHED_GAME, DELETE_SEARCHED} from "../actions";
+import {GET_ALL_VIDEOGAMES, ORDER, FILTER,GET_VIDEOGAMES_BY_NAME, SEARCHED_GAME, DELETE_SEARCHED, DELETE} from "../actions";
 
 
 const initialState = {
@@ -29,6 +29,12 @@ switch (action.type) {
             lastGameSearched: action.payload
         };
 
+    case DELETE:
+        return {
+            ...state,
+            videoGames: action.payload
+        };
+    
     case GET_VIDEOGAMES_BY_NAME: 
         return {
             ...state,

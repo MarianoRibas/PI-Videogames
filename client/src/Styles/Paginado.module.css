@@ -13,24 +13,24 @@ ul {
 /*     flex: 1; */
   }
 button {
-    background-color:  #e2eafc;
+    background-color:  #b4b4b400;
     flex-direction: column;
-    color: #0a1128;
-    font-size: 13px;
+    color: #171717;
+    font-size: 16px;
     font-family: Helvetica;
-    border-radius: 6px;
-    border: #e2eafc solid 3px;
+    border-radius: 4px;
+    border: #17171700 solid 1px;
     padding: 4px;
     cursor: pointer;
-    transition-duration: 0.4s;
+    transition-duration: 0.2s;
 }
 
 button:hover {
-    background-color: #0a1128 ;
-    color:  #e2eafc;
-    transition-delay: 0.2s;
-    transition: 0.8s;
-    border: #e2eafc solid 3px;
+    background-color: #17171700 ;
+    color:  #171717;
+    transition-delay: 0.1s;
+    transition: 0.2s;
+    border: #b4b4b4 solid 2px;
 }
 li{
     margin: 3px;

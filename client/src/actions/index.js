@@ -6,6 +6,7 @@ export const FILTER ='FILTER';
 export const GET_VIDEOGAMES_BY_NAME = 'GET_VIDEOGAMES_BY_NAME';
 export const SEARCHED_GAME = 'SEARCHED_GAME';
 export const DELETE_SEARCHED = 'DELETE_SEARCHED';
+export const DELETE= 'DELETE';
 
 
 
@@ -41,6 +42,13 @@ export function deleteSearchedGame () {
     return {
         type: DELETE_SEARCHED,
         payload: ""
+    };
+};
+
+export function deleteAll() {
+    return {
+        type: DELETE,
+        payload: []
     };
 };
 

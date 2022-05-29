@@ -1,10 +1,11 @@
-import { FILTER_BY_GENRE, GET_ALL_VIDEOGAMES,ORDER_BY_NAME, ORDER_BY_RATING, DELETE_ALL} from "../actions";
+import {GET_ALL_VIDEOGAMES, ORDER, FILTER} from "../actions";
 
 
 const initialState = {
     
     videoGames: [],
-    genres: []
+    genres: [],
+    lastGameSearched: ""
 };
 
 
@@ -15,37 +16,12 @@ switch (action.type) {
             ...state,
             videoGames: action.payload
         };
-    case DELETE_ALL:
-        return {
-            
-            videoGame: action.payload
-        }
-
-    case ORDER_BY_NAME:
-        if(action.payload != ''){
-        const orderedGames = action.payload === 'asc'? 
-            state.videoGames.sort ((a,b)=> {
-                if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
-                if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
-                return 0;
-            } )
-            : state.videoGames.sort ((a,b)=> {
-                if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-                if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-                return 0;
-            } )
-
-        return {
-            ...state,
-            videoGames: orderedGames
-
-        };
-        } else 
-        return {...state}
-    case ORDER_BY_RATING:
-        if(state.videoGames){
-        if(action.payload != ''){
-        const orderedGamesbyRating = action.payload === 'highRating'? 
+    
+    case ORDER:
+        {
+            if (state.videoGames) {
+                if (action.payload === 'highRating' || action.payload === 'lowRating') {
+                    const orderedGamesbyRating = action.payload === 'highRating'? 
             state.videoGames.sort ((a,b)=> {
                 if (a.rating < b.rating) return 1;
                 if (a.rating > b.rating) return -1;
@@ -61,18 +37,39 @@ switch (action.type) {
             ...state,
             videoGames: orderedGamesbyRating
         }
-        } else 
-         return {
-        ...state
-                };
-        } 
-    case FILTER_BY_GENRE:
+                } else 
+                if (action.payload === 'asc' || action.payload === 'desc') {
+                    const orderedGames = action.payload === 'asc'? 
+                    state.videoGames.sort ((a,b)=> {
+                        if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+                        if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+                        return 0;
+                    } )
+                    : state.videoGames.sort ((a,b)=> {
+                        if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+                        if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+                        return 0;
+                    } )
+        
         return {
+            ...state,
+            videoGames: orderedGames
+        
+                };   
+                } else 
+        return {
+            ...state
+        }
+            }
+        };   
+
+    case FILTER:
+    console.log()    
+    return {
             ...state,
             videoGames: action.payload
         };
-                        
-
+    
     default:
         return state;
 }

@@ -1,10 +1,13 @@
 import axios from 'axios';
-export const GET_ALL_VIDEOGAMES = 'GET_ALL_VIDEOGAMES'
-export const ORDER_BY_NAME = 'ORDER_BY_NAME'
-export const ORDER_BY_RATING = 'ORDER_BY_RATING'
-export const FILTER_BY_GENRE = 'FILTER_BY_GENRE'
-export const DELETE_ALL = 'DELETE_ALL'
 
+export const GET_ALL_VIDEOGAMES = 'GET_ALL_VIDEOGAMES';
+export const ORDER = 'ORDER';
+export const FILTER ='FILTER';
+export const GET_VIDEOGAMES_BY_NAME = 'GET_VIDEOGAMES_BY_NAME';
+
+
+
+// ACTIONS:
 
 export function getAllVideoGames () {
     return async (dispatch) => {
@@ -20,47 +23,82 @@ export function getAllVideoGames () {
     
         } catch (error) {
             console.log(error)
-             }
+             };
     
     };
 };
 
-export function deleteAllGames () {
-    return {
-        type: DELETE_ALL,
-        payload: []
-    }
-}
-
-export function orderByName(payload){
-    return{
-        type: ORDER_BY_NAME,
-        payload
-    }
+export function getGamesByName (payload) {
+    return async function(dispatch){
+        try{
+            var json = await axios.get(`http://localhost:3001/videogames?name=${payload}`)
+            return dispatch({
+                type: GET_VIDEOGAMES_BY_NAME,
+                payload: json.data
+            });
+        } catch(e){
+            console.log(e)
+        };
+    };
 };
 
-export function orderByRating(payload){
+export function orderBy(payload){
     return{
-        type: ORDER_BY_RATING,
+        type: ORDER,
         payload
-    }
+    };
 };
 
-export function filterByGenre (genre) {
+export function filterBy (payload) {
     return async (dispatch) => {
         try {
-        const filteredGames = await axios (`http://localhost:3001/videogames?genre=${genre}`)
-        
+        if (payload.name) {
+        const allGames = await axios (`http://localhost:3001/videogames?name=${payload.name}&source=${payload.source}&genre=${payload.genre}`)
         return dispatch(
             {
-            type: GET_ALL_VIDEOGAMES,
-            payload: filteredGames.data
+            type: FILTER,
+            payload: allGames.data
                 }
             );
-    
+        } else 
+        if (!payload.name && payload.source && payload.genre) {
+            const allGames = await axios (`http://localhost:3001/videogames?source=${payload.source}&genre=${payload.genre}`)
+            return dispatch(
+                {
+                type: FILTER,
+                payload: allGames.data
+                    }
+                );   
+        } else 
+        if (!payload.name && !payload.source && payload.genre) {
+            const allGames = await axios (`http://localhost:3001/videogames?genre=${payload.genre}`)
+            return dispatch(
+                {
+                type: FILTER,
+                payload: allGames.data
+                    }
+                );    
+        } else 
+        if (!payload.name && payload.source && !payload.genre) {
+            const allGames = await axios (`http://localhost:3001/videogames?source=${payload.source}`);
+            return dispatch(
+                {
+                type: FILTER,
+                payload: allGames.data
+                    }
+                );    
+        };
         } catch (error) {
             console.log(error)
-             }
+            };
     
     };
 };
+
+
+
+
+
+
+
+

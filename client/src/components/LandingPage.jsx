@@ -9,26 +9,25 @@ import styles from '../Styles/Landing.module.css'
 
 export default function LandingPage () {
     const dispatch = useDispatch();
-    useEffect (() => {
-        dispatch(getAllVideoGames());
-    },[dispatch])
+    // useEffect (() => {
+    //     dispatch(getAllVideoGames());
+    // },[dispatch])
 
     const allGames = useSelector((state) => state.videoGames);
     
     return (
         <div className={styles.background}>
-            <div className={styles.title}>
-            <h1>Bienvenidos</h1>
+            <div>
+            <h1 className={styles.title}>WELCOME</h1>
             </div>
             <Link to ='/home'>
             <div>
-            {allGames.length>0?
-            <button className={styles.button}>Ingresar</button>
-            : <p>Loading...</p>}
+            {/* {allGames.length>0? */}
+            {/* <button className={styles.button}>START</button> */}
+            <div className={styles.sppiner}></div>
+            {/* : <p>Loading...</p>} */}
             </div>
             </Link>
-            
-        
         </div>
     )
 

@@ -45,7 +45,7 @@ useEffect (() => {dispatch(deleteDetail())}, [])
 function handleReload (e) {
         firstUpdate1.current = true;
         firstUpdate2.current = true;
-        firstUpdate3.current = true;
+        // firstUpdate3.current = true;
         dispatch(deleteAll());
         setFilteredByGenre({...filteredByGenre, name:"",activated: false});
         setFilteredBySource({...filteredBySource, name:"",activated: false});
@@ -62,7 +62,7 @@ function handleReload (e) {
 
 //cuando se cambia el filtro por género:
 let firstUpdate1 = useRef(true);
-let firstUpdate2 = useRef(true);
+// let firstUpdate2 = useRef(true);
 
 
 useEffect (() => { 
@@ -74,19 +74,20 @@ useEffect (() => {
     // console.log(newFilt)
     dispatch(deleteAll());
     dispatch(filterBy(newFilt));
-},[filteredByGenre]);
+},[filteredByGenre,filteredBySource, lastGameSearched]);
 
 
-// cuando se cambia el filtro por fuente(api o DB):
-useEffect (() => {
-    if (firstUpdate2.current) {
-        firstUpdate2.current = false;
-        return;
-      }
-    let newFilt2 = {name: lastGameSearched, genre: filteredByGenre, source: filteredBySource};
-    dispatch(deleteAll());
-    dispatch(filterBy(newFilt2));
-},[filteredBySource]);
+// cuando se cambia el filtro por fuente(api o DB): NO ES NECESARIO VARIOS USE EFFECT
+                                                //  CON UNO Q ESCUCHE LOS TRES ESTADOS ESTA OK
+// useEffect (() => {
+//     if (firstUpdate2.current) {
+//         firstUpdate2.current = false;
+//         return;
+//       }
+//     let newFilt2 = {name: lastGameSearched, genre: filteredByGenre, source: filteredBySource};
+//     dispatch(deleteAll());
+//     dispatch(filterBy(newFilt2));
+// },[filteredBySource, lastGameSearched]);
 
 
 // ORDENAR: (FRONT)
@@ -100,11 +101,11 @@ function handleOrder (e) {
 };
 
 // PARA ORDENAR POST FILTRADO, SI ES Q HAY UN ORDENAMIENTO PUESTO
-let firstUpdate3 = useRef(true);
+let firstUpdate2 = useRef(true);
 
 useEffect (() => {
-    if (firstUpdate3.current) {
-        firstUpdate3.current = false;
+    if (firstUpdate2.current) {
+        firstUpdate2.current = false;
         return;
       }
     dispatch(orderBy(order));
@@ -116,8 +117,8 @@ useEffect (() => {
 //   
 
 return (
-        <div>
-            <div className={styles.blur}>
+        <div className={styles.body}>
+            <div >
                 <h1 className={styles.h1}>HOME</h1>
         
                 <div className={styles.link}>
@@ -129,7 +130,7 @@ return (
                     <SearchBar />
                 </div>   
         
-                <div className={styles.divOrder}>    
+                <div >    
                     <select classname= {styles.select} onChange={e => {handleOrder(e)}}>
                     <option value="">Order by</option>
                     <option value='desc'>Name (A-Z)</option>
@@ -138,60 +139,76 @@ return (
                     <option value='highRating'>Higher Rating</option>
                     </select>
                 </div>    
-                
-                {
-                    filteredByGenre.name?
-                    <div>
-                    <p>{filteredByGenre.name}</p> 
-                    <button onClick={() => 
-                    {setFilteredByGenre({...filteredByGenre, name: "", activated:false})
-                    dispatch(deleteAll())}}>X</button>
+                <div>
+                    <div className={styles.divMiddle}>
+                        <div className={styles.divMiddle}>
+                        {
+                        filteredByGenre.name?
+                        <div>
+                        <p className={styles.p}><i>{filteredByGenre.name}</i><button className={styles.pButt} onClick={() => 
+                        {setFilteredByGenre({...filteredByGenre, name: "", activated:false})
+                        dispatch(deleteAll())}}>X</button></p> 
+                        </div>
+                        : <p></p>
+                        }
+                        </div>
+                        <div className={styles.divMiddle}>
+                        {
+                        lastGameSearched?
+                        <div className={styles.divButton}>
+                        <p>{lastGameSearched}<button onClick={() => 
+                        {dispatch(deleteSearchedGame());
+                        dispatch(deleteAll())}}>X</button></p>                        
+                        </div>
+                        : <p></p>
+                        
+                        }
+                        </div>
+                        <div className={styles.divMiddle}>
+                        {  
+                        filteredBySource.name?
+                        <div>
+                        <p>{filteredBySource.name}<button className={styles.divMiddle} onClick={() => 
+                        {setFilteredBySource({...filteredBySource, name: "", activated:false})
+                        dispatch(deleteAll())}}>X</button></p>                        
+                        </div>
+                        : <p></p>
+                        }
+                        </div>
                     </div>
-                    : <p></p>
-                }
-                {  
-                    filteredBySource.name?
-                    <div>
-                    <p>{filteredBySource.name}</p> 
-                    <button onClick={() => 
-                    {setFilteredBySource({...filteredBySource, name: "", activated:false})
-                    dispatch(deleteAll())}}>X</button>
-                    </div>
-                    : <p></p>
-                }
-                <div className={styles.divFilter}>   
-                    <select classname= {styles.select} onChange={(e) => 
-                    {setFilteredByGenre({...filteredByGenre, name:e.target.value, activated: true}) 
-                    }}>
-                <option value="">Filter by Genre</option>
-                <option value="Strategy">Strategy</option>
-                <option value="Adventure">Adventure</option>
-                <option value="Indie">Indie</option>
-                <option value="RPG">RPG</option>
-                <option value="Action">Action</option>
-                <option value="Shooter">Shooter</option>
-                <option value="Casual">Casual</option>
-                <option value="Simulation">Simulation</option>
-                <option value="Puzzle">Puzzle</option>
-                <option value="Arcade">Arcade</option>
-                <option value="Platformer">Platformer</option>
-                <option value="Racing">Racing</option>
-                <option value="Massively Multiplayer">Massively Multiplayer</option>
-                <option value="Sports">Sports</option>
-                <option value="Fighting">Fighting</option>
-                <option value="Family">Family</option>
-                <option value="Board Games">Board Games</option>
-                <option value="Educational">Educational</option>
-                <option value="Card">Card</option>
-                    </select>      
-                    <select classname= {styles.select} onChange={(e) => 
-                    {setFilteredBySource({...filteredBySource, name:e.target.value, activated: true})}}>
-                <option value="">Filter by Origin</option>
-                <option value="created">Added by User</option>
-                <option value="existant">Existant</option>
-                    </select>
-                </div>    
-        
+                    <div className={styles.divFilter}>   
+                        <select classname= {styles.select} onChange={(e) => 
+                        {setFilteredByGenre({...filteredByGenre, name:e.target.value, activated: true}) 
+                        }}>
+                            <option value="">Filter by Genre</option>
+                            <option value="Strategy">Strategy</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="Indie">Indie</option>
+                            <option value="RPG">RPG</option>
+                            <option value="Action">Action</option>
+                            <option value="Shooter">Shooter</option>
+                            <option value="Casual">Casual</option>
+                            <option value="Simulation">Simulation</option>
+                            <option value="Puzzle">Puzzle</option>
+                            <option value="Arcade">Arcade</option>
+                            <option value="Platformer">Platformer</option>
+                            <option value="Racing">Racing</option>
+                            <option value="Massively Multiplayer">Massively Multiplayer</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Fighting">Fighting</option>
+                            <option value="Family">Family</option>
+                            <option value="Board Games">Board Games</option>
+                            <option value="Educational">Educational</option>
+                            <option value="Card">Card</option>
+                        </select>      
+                        <select classname= {styles.select} onChange={(e) => 
+                        {setFilteredBySource({...filteredBySource, name:e.target.value, activated: true})}}>
+                            <option value="">Filter by Origin</option>
+                            <option value="created">Added by User</option>
+                            <option value="existant">Existant</option>
+                        </select>
+                    </div>    
+                </div>
                 <div>
                     <Paginado paginado={paginado} videoGamesPerPage ={15} allGames = {allGames.length} />
                     {
@@ -200,13 +217,15 @@ return (
                             {
                                 currentGames.map((e, index) => (
                                     <div key={index}>
+                                        <Link to ={`/videogame/${e.id}`}>
                                         <Game
                                         id={e.id}
                                         name={e.name}
                                         image={e.image}
                                         genres={e.createdInDb ?
                                         e.genres.map((s, index) => (<li key={index}>{s.name}</li>)) :
-                                        e.genres.map((s, index) => (<li key={index}>{s}</li>))} /> 
+                                        e.genres.map((s, index) => (<li key={index}>{s}</li>))} />
+                                        </Link> 
                                     </div>
                                 ))
                             }

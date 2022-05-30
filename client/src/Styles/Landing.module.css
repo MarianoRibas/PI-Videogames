@@ -1,43 +1,80 @@
-.background {
-    /* background-image: url('https://wallpapercave.com/wp/3jQbonO.jpg'); */
-    background-position: center; 
+.background{
+    background-color: rgb(0, 0, 0);
+    color: white;
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
     overflow: hidden;
     height: 100%; 
-    position:fixed;
-    backdrop-filter: blur(7px);  
+    position:fixed; 
+    align-content: center;
+    
 }
-.container {
+.container{
+    align-content: center;
     display: flex;
     align-items: center;
-    align-content: center;
 }
-.title {
-    color: #e2eafc;
+
+.title{
+    color: #ffffff;
     flex-direction: column;
-    font-family: Helvetica;
-    font-size: 35px;
+    font-family: Arial;
+    font-size: 60px;
     text-align: center;
-}
-.button {
-    background-color: #13131300 ;
-    flex-direction: column;
-    color: #000000;
-    font-size: 20px;
-    font-family: Helvetica;
-    border-radius: 4px;
-    border: #00000000 solid 3px;
-    padding: 10px;
+    text-shadow: 2px 2px 5px rgba(185, 185, 185, 0.425);
     cursor: pointer;
-    transition-duration: 0.2s;
+    
+}
+
+.button {
+    background-color: #e2eafc00;
+    flex-direction: column;
+    color: #e2eafc;
+    font-size: 20px;
+    font-family: Arial;
+    /* border-style: ridge; */
+    padding: 5px;
+    transition-duration: 0,2s;
+    opacity: calc(0.8);
+    filter:brightness(1);
+    border: #3f3f3f00;
+    
 }
 
 .button:hover {
-    background-color: #5e5e5e00;
-    color: #f0f0f0;
-    transition-delay: 0.2s;
-    transition: 0.8s;
-    border: #00000000 solid 3px;
+    border: #3f3f3f1f;
+    border-radius: 4px;
+    
+    transition: 0.3s;
+    background-color: #3f3f3f1f;
+    filter: brightness(50)
+}
+
+.sppiner{
+    width: 3rem;
+    height: 3rem;
+    flex-direction: column;
+    border: 1rem solid #eff2fd;
+    border-top-color: rgb(128, 128, 128);
+    border-top-style:solid;
+    border-width: 3px;
+    border-radius: 50%;
+    animation: spin 1.5s infinite linear;
+    /* align-content: center; */
+    filter: blur(1px);
+    /* transition: 0.2s; */
+    margin: auto;
+    margin-top: 200px;
+}
+
+@keyframes spin {
+    
+    to{
+        transform: rotate(2turn);
+        filter: blur(1px);
+        /* display: flex; */
+        /* transition: ease-in-out; */
+        /* transform-style: preserve-3d; */
+    }
 }

@@ -1,98 +1,27 @@
-h1{
-    color: #b4b4b4;
-    font-family: Helvetica;
-    margin-bottom: 0px;
+.h1{
+    background-color: black;
+    color: aliceblue;
 }
-body{
-    background: no-repeat url('https://wallpapercave.com/wp/3jQbonO.jpg');
-    /* background: black; */
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
+.body{
+    background-color: black;
+    color: aliceblue;
 }
-.blur {
-    backdrop-filter: blur(7px);
-    width: 100%;
-    height: 100%; 
-}
-a{
-    color: #b4b4b4;
-    font-family: Helvetica;
+.p{
+    color: rgba(255, 255, 255, 0.473);
     font-size: 15px;
-    position: relative;
-    top: -1.5%;
-    text-decoration: none;
+    opacity: 0.7;
 }
-.button2 {
-    background-color:  #b4b4b4;
-    flex-direction: column;
-    color: #0a1128;
-    font-size: 13px;
-    font-family: Helvetica;
-    border-radius: 6px;
-    border: #b4b4b4 solid 3px;
-    padding: 4px;
-    cursor: pointer;
-    transition-duration: 0.4s;
-}
-
-.button:hover {
-    background-color: #0a1128 ;
-    color:  #e2eafc;
-    transition-delay: 0.2s;
-    transition: 0.2s;
-    border: #e2eafc solid 3px;
-}
-.divOrder{
-    display: flex;
-    justify-content: right;
-    margin-right: 140px;
-    position: relative;
-    top: 1.5%;
-    color: rgba(0, 0, 0, 0);
-    border-width: 130px;
-    border-color: #0a1128;
-    border-radius: 6px;
-    font-size: 150px;
-    margin-right: 26px;
-    
+.pButt{
+    color: rgba(255, 255, 255, 0.473);
+    font-size: 14px;
+    opacity: 0.8;
+    border-color: rgba(252, 253, 255, 0);
+    padding: 2px;
+    transition-duration: 0,2s;
     
 }
-.divFilter{
-    display: flex;
-    justify-content: left;
-    position: relative;
-    top: 1.5%;
-     
-}
-/* .select{
-    border-width: 150px;
-    border-color: #0a1128;
-    border-radius: 6px;
-    font-size: 13px;
-} */
-.select{
-    border-width: 130px;
-    border-color: #0a1128;
-    border-radius: 6px;
-    font-size: 150px;
-    margin-right: 26px;
-    background-color: rgb(0, 0, 0);
-}
-.conteiner{
-    display: grid;
-    grid-template-columns: auto;
-    gap: 3rem;
-    align-items: start;
+pButt:hover{
+    border: rgba(255, 0, 0, 0);
+    color: rgba(255, 255, 255, 0.473);
     
-
-}
-.link{
-    margin-bottom: 13px;
-}
-h2{
-    color: #0a1128;
-    font-family: Helvetica;
-    display: flex;
-    justify-content: center;
 }

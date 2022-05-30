@@ -175,12 +175,13 @@ const getFilteredBySource = async function (source) {
 const filter = async function (games,source, genre) {
     
     if (genre && source) {
-        const filteredByGenre = games.filter(e => e.genres.includes(genre));
         if (source === 'existant') {
-            const filteredBoth = filteredByGenre.filter(e => Number(e.id));
+        const filteredByGenre = await games.filter(e => e.genres.includes(genre));
+            const filteredBoth = await filteredByGenre.filter(e => !e.createdInDb);
                 return filteredBoth;
             } else {
-                const filteredBoth = filteredByGenre.filter(e => e.id.length >= 7);
+                const filteredByGenre =  await games.filter(e => e.genres.includes(genre) );
+                const filteredBoth = await filteredByGenre.filter(e => e.id.length > 7);
                 return filteredBoth;
             }
     } else 
@@ -190,13 +191,13 @@ const filter = async function (games,source, genre) {
     } else 
     if (!genre && source){
         if (source === 'existant') {
-            const filteredBySource = games.filter(e => Number(e.id));
+            const filteredBySource = await games.filter(e => !e.createdInDb);
                 return filteredBySource;
             } else {
-                const filteredBySource = games.filter(e => e.id.length >= 7);
+                const filteredBySource = await games.filter(e => e.id.length > 7);
                 return filteredBySource;
-            }
-    }
+            };
+    };
 }
 
 

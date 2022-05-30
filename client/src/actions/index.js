@@ -80,7 +80,8 @@ export function filterBy (payload) {
     return async (dispatch) => {
         try {
         if (payload.name) {
-        const allGames = await axios (`http://localhost:3001/videogames?name=${payload.name}&source=${payload.source}&genre=${payload.genre}`)
+        const allGames = await axios (`http://localhost:3001/videogames?name=${payload.name}&source=${payload.source.name}&genre=${payload.genre.name}`)
+        console.log(payload)
         return dispatch(
             {
             type: FILTER,
@@ -89,6 +90,7 @@ export function filterBy (payload) {
             );
         } else 
         if (!payload.name && payload.source.name && payload.genre.name) {
+            
             const allGames = await axios (`http://localhost:3001/videogames?source=${payload.source.name}&genre=${payload.genre.name}`)
             return dispatch(
                 {
@@ -99,6 +101,7 @@ export function filterBy (payload) {
         } else 
         if (!payload.name && !payload.source.name && payload.genre.name) {
             const allGames = await axios (`http://localhost:3001/videogames?genre=${payload.genre.name}`)
+            
             return dispatch(
                 {
                 type: FILTER,

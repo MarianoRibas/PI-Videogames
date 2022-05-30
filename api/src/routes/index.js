@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const axios = require('axios')
-const {getApiGameById, getDbGameById, getApiGenres, getAllVideoGames, getFilteredBySource, getFilteredByGenre, getAllGamesByName, filter} = require('./controllers')
+const {getApiGameById, getDbGameById, getApiGenres, getAllVideoGames, getAllGamesByName, filter} = require('./controllers')
 const {Videogame, Genre} = require('../db')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -19,6 +19,7 @@ router.get("/videogames", async function (req, res){
         if (name) {
             name = name.toLowerCase();
             const allGamesByName = await getAllGamesByName(name);
+            console.log(name,genre,source)
             if (allGamesByName.length >= 1) {
                 if (genre || source) {
                     const filteredGames = await filter(allGamesByName, source, genre);
@@ -41,43 +42,6 @@ router.get("/videogames", async function (req, res){
     };
 });
 
-
-
-// router.get("/videogames", async function (req, res) {
-//     const {name} = req.query;
-//     const {genre, source} = req.params
-//     try {
-       
-//         if (name) {
-//             name = name.toLowerCase()
-//             const allGamesByName = getAllGamesByName (name);
-//             if (allGamesByName.length >= 1) {
-//                 return res.status(200).send(allGamesByName)
-//                 } else
-//                 return res.status(400).send("No se han encontrados juegos que coincidan con la búsqueda");
-//         }
-//         else 
-//         if (source){
-//                 if (genre) {
-                    
-//                 }
-//                 const filtBySource = await getFilteredBySource(source);
-//                 res.status(200).send(filtBySource);
-//         }
-//         else 
-//         if (genre){
-//                 const filtByGenre = await getFilteredByGenre(genre);
-//                 res.status(200).send(filtByGenre);
-//         }
-//         else {
-//                 const totalGames = await getAllVideoGames();
-//                 res.status(200).send(totalGames);
-//             }
-//     } catch(error){
-//         console.log(error);
-//         res.status(404).send(error);
-//     }
-// });
 
 router.get("/videogame/:id", async function (req, res){
     let {id} = req.params;

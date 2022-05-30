@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useState, useEffect,useRef } from 'react';
-import {getAllVideoGames, orderBy, filterBy, deleteSearchedGame, deleteAll, deleteDetail} from '../actions';
+import {getAllVideoGames, orderBy, filterBy, deleteSearchedGame, deleteAll, deleteDetail, getGenres} from '../actions';
 import {Link} from 'react-router-dom';
 import Game from "./Game"
 import Paginado from './Paginado';
@@ -16,6 +16,8 @@ export default function Home () {
     const dispatch = useDispatch();
     const allGames = useSelector((state) => state.videoGames);
     const lastGameSearched = useSelector((state) => state.lastGameSearched);
+    const allGenres = useSelector((state) => state.genres);
+    let genresCount =  0; 
     const [currentPage, setCurrentPage] = useState(1);
     const [order, setOrder] = useState("");
     const [randomState, setRandomState] = useState(0);
@@ -29,6 +31,9 @@ export default function Home () {
 const paginado = (pageNum) => {
     setCurrentPage(pageNum);
 };
+
+// useEffect(()=>{dispatch(getGenres())}, []);
+// genresCount = allGenres.map(genre => {})
 
 // HANDLES PARA FILTROS,ORDENAMIENTOS Y RELOAD  
 
@@ -53,7 +58,7 @@ function handleReload (e) {
 
 // FILTROS: (BACK)
 
-// Es una sola action que con dos useEffect que se dispara enviando un objeto como payload. Cada Hook esta pendiente si se cambia el valor de cada filtro. Se envia en una sola action para poder juntar ambos filtros
+// Es unas sola action que con dos useEffect que se dispara enviando un objeto como payload. Cada Hook esta pendiente si se cambia el valor de cada filtro. Se envia en una sola action para poder juntar ambos filtros
 
 //cuando se cambia el filtro por género:
 let firstUpdate1 = useRef(true);
@@ -66,7 +71,9 @@ useEffect (() => {
         return;
       }
     let newFilt = {name: lastGameSearched, genre: filteredByGenre, source: filteredBySource};
-    dispatch(filterBy(newFilt))
+    // console.log(newFilt)
+    dispatch(deleteAll());
+    dispatch(filterBy(newFilt));
 },[filteredByGenre]);
 
 
@@ -77,6 +84,7 @@ useEffect (() => {
         return;
       }
     let newFilt2 = {name: lastGameSearched, genre: filteredByGenre, source: filteredBySource};
+    dispatch(deleteAll());
     dispatch(filterBy(newFilt2));
 },[filteredBySource]);
 
@@ -145,7 +153,8 @@ return (
                     filteredBySource.name?
                     <div>
                     <p>{filteredBySource.name}</p> 
-                    <button onClick={() => {setFilteredBySource(false)
+                    <button onClick={() => 
+                    {setFilteredBySource({...filteredBySource, name: "", activated:false})
                     dispatch(deleteAll())}}>X</button>
                     </div>
                     : <p></p>
@@ -175,10 +184,10 @@ return (
                 <option value="Educational">Educational</option>
                 <option value="Card">Card</option>
                     </select>      
-                    <select classname= {styles.select} onChange={(e) => {setFilteredBySource(e.target.value)
-            dispatch(deleteAll())}}>
+                    <select classname= {styles.select} onChange={(e) => 
+                    {setFilteredBySource({...filteredBySource, name:e.target.value, activated: true})}}>
                 <option value="">Filter by Origin</option>
-                <option value="created">Created</option>
+                <option value="created">Added by User</option>
                 <option value="existant">Existant</option>
                     </select>
                 </div>    

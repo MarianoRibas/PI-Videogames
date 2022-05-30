@@ -9,9 +9,9 @@ import styles from '../Styles/Landing.module.css'
 
 export default function LandingPage () {
     const dispatch = useDispatch();
-    // useEffect (() => {
-    //     dispatch(getAllVideoGames());
-    // },[dispatch])
+    useEffect (() => {
+        dispatch(getAllVideoGames());
+    },[dispatch])
 
     const allGames = useSelector((state) => state.videoGames);
     
@@ -22,10 +22,10 @@ export default function LandingPage () {
             </div>
             <Link to ='/home'>
             <div>
-            {/* {allGames.length>0? */}
-            {/* <button className={styles.button}>START</button> */}
-            <div className={styles.sppiner}></div>
-            {/* : <p>Loading...</p>} */}
+            {allGames.length>0?
+            <button className={styles.button}>START</button>
+            
+            : <div className={styles.sppiner}></div>}
             </div>
             </Link>
         </div>

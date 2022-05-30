@@ -19,36 +19,49 @@
 .title{
     color: #ffffff;
     flex-direction: column;
-    font-family: Arial;
+    font-family: Helvetica;
     font-size: 60px;
     text-align: center;
-    text-shadow: 2px 2px 5px rgba(185, 185, 185, 0.425);
+    text-shadow: 2px 2px 5px rgba(185, 185, 185, 0.199);
     cursor: pointer;
-    
+    animation: fadein 9s;
+    font-weight: lighter;
 }
 
 .button {
-    background-color: #e2eafc00;
+    background-color: #ffffff1a;
     flex-direction: column;
-    color: #e2eafc;
-    font-size: 20px;
-    font-family: Arial;
+    color: #ffffff;
+    font-size: 30px;
+    font-family: Helvetica;
     /* border-style: ridge; */
-    padding: 5px;
-    transition-duration: 0,2s;
-    opacity: calc(0.8);
+    padding: 10px;
+    transition-duration: 1s;
+    /* opacity: calc(0.8); */
     filter:brightness(1);
     border: #3f3f3f00;
-    
+    margin-top: 140px;
+    animation: fadein 1s;
+    opacity: 0.7;
+    border-radius: 5px;
+}
+@keyframes fadein{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 0,7;
+    }
 }
 
 .button:hover {
     border: #3f3f3f1f;
-    border-radius: 4px;
-    
-    transition: 0.3s;
-    background-color: #3f3f3f1f;
-    filter: brightness(50)
+    border-radius: 5px;
+    color: #ffffff;
+    transition: 0.2s;
+    background-color: #ffffff1a;
+    filter: brightness(1);
+    opacity: 1;
 }
 
 .sppiner{
@@ -61,20 +74,25 @@
     border-width: 3px;
     border-radius: 50%;
     animation: spin 1.5s infinite linear;
-    /* align-content: center; */
     filter: blur(1px);
-    /* transition: 0.2s; */
+    transition-duration: 2s;
     margin: auto;
-    margin-top: 200px;
+    margin-top: 180px;
+    
 }
 
+
+
 @keyframes spin {
-    
+    from{
+        opacity: 1;
+    }
     to{
         transform: rotate(2turn);
         filter: blur(1px);
         /* display: flex; */
         /* transition: ease-in-out; */
         /* transform-style: preserve-3d; */
+        opacity: 0,7;
     }
 }

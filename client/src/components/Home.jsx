@@ -7,7 +7,7 @@ import Game from "./Game"
 import Paginado from './Paginado';
 import SearchBar from './SearchBar';
 import styles from '../Styles/Home.module.css'
-
+import home from '../images/home3.png'
 
 
 
@@ -118,18 +118,20 @@ useEffect (() => {
 
 return (
         <div className={styles.background}>
-        <div >
-            <div>
-                <h1 className={styles.h1} >HOME</h1>
-        
+            
+            <header className={styles.header}>
+                {/* <h1 className={styles.h1} >HOME</h1> */}
                 <div >
-                    <Link to='/videogame'>Create Game</Link>
-                    <button onClick={e => {handleReload(e)}}>Re-load All Games</button>
+                    <button className={styles.home}><img src={home}/></button>
                 </div>
-        
+                
                 <div className={styles.searchBar}>
                     <SearchBar />
-                </div>   
+                </div> 
+            </header>    
+                
+        
+                  
                 <div className={styles.divOrder}>
                     
                     <p >Order By: </p>
@@ -144,8 +146,13 @@ return (
                         </select>
                     
                 </div>    
-                <div>
-                    <div>
+                <div className={styles.divSideBar} >
+                    <aside  >
+                    <div >
+                    <Link to='/videogame'><h2>Create Game</h2></Link>
+                    <button onClick={e => {handleReload(e)}}>Re-load All Games</button>
+                    </div>
+                    <div  >
                         <div >
                         {
                         filteredByGenre.name?
@@ -181,7 +188,7 @@ return (
                         }
                         </div>
                     </div>
-                    <div className={styles.divFilter}>
+                    <div >
                         <div classname= {styles.divSelFilter} >   
                         <select onChange={(e) => 
                         {setFilteredByGenre({...filteredByGenre, name:e.target.value, activated: true}) 
@@ -217,7 +224,8 @@ return (
                             <option value="existant">Existant</option>
                             </select>
                         </div>
-                    </div>    
+                    </div>
+                    </aside>    
                 </div>
                 <div className={styles.div}>
                     <Paginado paginado={paginado} videoGamesPerPage ={15} allGames = {allGames.length} />
@@ -242,13 +250,14 @@ return (
                         </div>  
                     : <div className={styles.sppiner}></div>
                     }
-                </div>
-        
-                <div>
+                    <div>
                     <Paginado paginado={paginado} videoGamesPerPage ={15} allGames = {allGames.length} />
                 </div>
-            </div>
-        </div> 
+                </div>
+        
+                
+            
+             
         </div>     
     )
 };

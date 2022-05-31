@@ -1,5 +1,5 @@
 .container{
-    width: 120%;
+    width: 150%;
     height: 20px;
     max-width: 700px;
     background: rgba(255, 255, 255, 0.062);
@@ -7,8 +7,12 @@
     align-items: center;
     border-radius: 10px;
     padding: 10px;
+    transition-duration: 1s;
 
+}
 
+.container:hover{
+    background: rgb(255, 255, 255);
 }
 
 .container input{
@@ -18,7 +22,7 @@
     outline: none;
     padding: 20px 2px;
     font-size: 16px;
-    color: #ffffff;
+    color: #000000;
 
 }
 
@@ -31,9 +35,18 @@
 
 .container button img{
 width: 15px;
-height: 23px;
+height: 20px;
 size: 20px;
 transition-duration: 1s;
+}
+.container:hover button img{
+    color: black;
+    background-color: black;
+    width: 15px;
+    height: 20px;
+    size: 20px;
+    border-spacing: 100px;
+    border-radius: 40px;
 }
 
 .container button img:hover{

@@ -1,9 +1,12 @@
+body{
+    background-color: #000000;
+}
 .background{
-    display: flex;
+   display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   
+   position: relative;
    background: #000000;
    
    
@@ -38,10 +41,13 @@
     border-top-color: rgb(128, 128, 128);
     border-top-style:solid;
     border-width: 3px;
+    position: relative;
+    left: auto;
+    right:70px;
     border-radius: 50%;
     animation: spin 1.5s infinite linear;
     filter: blur(1px);
-    transition-duration: 2s;
+    transition-duration: 0;
     margin: auto;
     margin-top: 180px;
     
@@ -54,12 +60,26 @@
     to{
         transform: rotate(2turn);
         filter: blur(1px);
-        /* display: flex; */
-        /* transition: ease-in-out; */
-        /* transform-style: preserve-3d; */
+        
         opacity: 0,7;
     }
 }
+
+.divSideBar{
+ display: grid;
+ grid-template-columns: auto;
+ align-items:left;
+ background-color:transparent;
+ position: absolute;
+ left: 20px;
+ top: 200px;
+}
+
+
+
+
+
+
 
 .p{
     color: rgba(255, 255, 255, 0.473);
@@ -86,14 +106,19 @@ pButt:hover{
     color: #fff;
     display: inline-flex;
     align-items: baseline;
-    margin-left: 1060px;   
+    margin-left: 1060px;
+    background-color: #000000;   
 }
 
 .divFilter{
     color: #fff;
     display:block;
     align-items: baseline;
-    margin-right: 1100px;
+    /* margin-right: 1100px; */
+    position: absolute;
+    left: 17px;
+    top: 300px;
+    background-color: #000000;
     
 }
 
@@ -149,7 +174,11 @@ select:hover{
  }
 
  .div{
-    margin-left: 10%;
+    position: absolute;
+    margin-left: 20%;
+    top: 200px;
+    background-color: #000000;
+
  }
 
  .games{
@@ -163,9 +192,37 @@ select:hover{
 
  }
 
- .searchBar{
+ .header{
+     display: flex;
+     background-color: #000000;
+     justify-content: left;
+     align-items: center;
+     position: absolute;
+     left: 20px;
+     top: 60px;
+ }
+
+.home{
+      background-color: transparent;
+ }
+.home img{
+    width: 40px;
+    height: 40px; 
+    border-radius: 10px;
+    transition-duration: 0.5s;
+  }
+.home img:hover{
+      filter: brightness(2);
+      filter: blur(.5px);
+  }
+ 
+  .searchBar{
     display: flex; 
     align-items: center;
-     justify-content: center;
+    justify-content: center;
+    position: absolute;
+    left: 80px;
  }
+
+ 
  

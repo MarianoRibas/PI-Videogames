@@ -1,11 +1,66 @@
-.h1{
-    background-color: black;
-    color: aliceblue;
+.background{
+    display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   
+   background: #000000;
+   
+   
 }
 .body{
-    background-color: black;
-    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #000000;
+    
+    color: #fff;
+     
 }
+
+.h1{
+    color: #ffffff;
+    font-family: Helvetica;
+    font-size: 50px;
+    text-shadow: 2px 2px 5px rgba(185, 185, 185, 0.199);
+    background-color: black;
+    font-weight: lighter;
+    background-size: cover;
+}
+
+.sppiner{
+    width: 3rem;
+    height: 3rem;
+    flex-direction: column;
+    border: 1rem solid #eff2fd;
+    border-top-color: rgb(128, 128, 128);
+    border-top-style:solid;
+    border-width: 3px;
+    border-radius: 50%;
+    animation: spin 1.5s infinite linear;
+    filter: blur(1px);
+    transition-duration: 2s;
+    margin: auto;
+    margin-top: 180px;
+    
+}
+
+@keyframes spin {
+    from{
+        opacity: 1;
+    }
+    to{
+        transform: rotate(2turn);
+        filter: blur(1px);
+        /* display: flex; */
+        /* transition: ease-in-out; */
+        /* transform-style: preserve-3d; */
+        opacity: 0,7;
+    }
+}
+
 .p{
     color: rgba(255, 255, 255, 0.473);
     font-size: 15px;
@@ -25,3 +80,92 @@ pButt:hover{
     color: rgba(255, 255, 255, 0.473);
     
 }
+
+
+.divOrder{
+    color: #fff;
+    display: inline-flex;
+    align-items: baseline;
+    margin-left: 1060px;   
+}
+
+.divFilter{
+    color: #fff;
+    display:block;
+    align-items: baseline;
+    margin-right: 1100px;
+    
+}
+
+.divSelFilter{
+    margin: 20px;
+    
+}
+
+
+.selselect{
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    appearance: none;
+    outline:0;
+    box-shadow:none;
+    border:0;
+    background: #c9c9c91f;
+    background-image: none;
+    flex: 4;
+    padding: 0 .5em;
+    color:rgb(255, 255, 255);
+    cursor:pointer;
+    font-size: 15px;
+    font-family: Helvetica;
+    border-radius: 4px;
+    transition-duration: .25s;
+ }
+select::after {
+    display: none;
+ }
+select {
+    position: relative;
+    
+    width: 120px;
+    height: 20px;
+    
+ }
+select:hover{
+    background-color: #5353535d;
+    color: #ffffff;
+ }
+ select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #303030;
+    cursor:pointer;
+    pointer-events:none;
+    transition: 1s;
+ }
+
+ .div{
+    margin-left: 10%;
+ }
+
+ .games{
+    /* display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 2rem;
+    align-items: start; */
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items:center;
+
+ }
+
+ .searchBar{
+    display: flex; 
+    align-items: center;
+     justify-content: center;
+ }
+ 

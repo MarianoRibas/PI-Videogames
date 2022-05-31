@@ -117,31 +117,36 @@ useEffect (() => {
 //   
 
 return (
-        <div className={styles.body}>
-            <div >
-                <h1 className={styles.h1}>HOME</h1>
+        <div className={styles.background}>
+        <div >
+            <div>
+                <h1 className={styles.h1} >HOME</h1>
         
-                <div className={styles.link}>
+                <div >
                     <Link to='/videogame'>Create Game</Link>
-                    <button classname= {styles.button2} onClick={e => {handleReload(e)}}>Re-load All Games</button>
+                    <button onClick={e => {handleReload(e)}}>Re-load All Games</button>
                 </div>
         
-                <div>
+                <div className={styles.searchBar}>
                     <SearchBar />
                 </div>   
-        
-                <div >    
-                    <select classname= {styles.select} onChange={e => {handleOrder(e)}}>
-                    <option value="">Order by</option>
-                    <option value='desc'>Name (A-Z)</option>
-                    <option value='asc'>Name (Z-A)</option>
-                    <option value='lowRating'>Lower Rating</option>
-                    <option value='highRating'>Higher Rating</option>
-                    </select>
+                <div className={styles.divOrder}>
+                    
+                    <p >Order By: </p>
+                    
+                        
+                        <select classname= {styles.select} onChange={e => {handleOrder(e)}}>
+                        <option value=""></option>
+                        <option value='desc'>Name (A-Z)</option>
+                        <option value='asc'>Name (Z-A)</option>
+                        <option value='lowRating'>Lower Rating</option>
+                        <option value='highRating'>Higher Rating</option>
+                        </select>
+                    
                 </div>    
                 <div>
-                    <div className={styles.divMiddle}>
-                        <div className={styles.divMiddle}>
+                    <div>
+                        <div >
                         {
                         filteredByGenre.name?
                         <div>
@@ -152,7 +157,7 @@ return (
                         : <p></p>
                         }
                         </div>
-                        <div className={styles.divMiddle}>
+                        <div >
                         {
                         lastGameSearched?
                         <div className={styles.divButton}>
@@ -164,7 +169,7 @@ return (
                         
                         }
                         </div>
-                        <div className={styles.divMiddle}>
+                        <div >
                         {  
                         filteredBySource.name?
                         <div>
@@ -176,8 +181,9 @@ return (
                         }
                         </div>
                     </div>
-                    <div className={styles.divFilter}>   
-                        <select classname= {styles.select} onChange={(e) => 
+                    <div className={styles.divFilter}>
+                        <div classname= {styles.divSelFilter} >   
+                        <select onChange={(e) => 
                         {setFilteredByGenre({...filteredByGenre, name:e.target.value, activated: true}) 
                         }}>
                             <option value="">Filter by Genre</option>
@@ -200,24 +206,28 @@ return (
                             <option value="Board Games">Board Games</option>
                             <option value="Educational">Educational</option>
                             <option value="Card">Card</option>
-                        </select>      
-                        <select classname= {styles.select} onChange={(e) => 
+                        </select> 
+                        <i></i>
+                        </div>
+                        <div className={styles.divSelFilter} >
+                            <select classname= {styles.selSelect} onChange={(e) => 
                         {setFilteredBySource({...filteredBySource, name:e.target.value, activated: true})}}>
                             <option value="">Filter by Origin</option>
                             <option value="created">Added by User</option>
                             <option value="existant">Existant</option>
-                        </select>
+                            </select>
+                        </div>
                     </div>    
                 </div>
-                <div>
+                <div className={styles.div}>
                     <Paginado paginado={paginado} videoGamesPerPage ={15} allGames = {allGames.length} />
                     {
                     (currentGames.length > 0) ? 
-                        <div className={styles.conteiner}>
+                        <div className={styles.games}>
                             {
                                 currentGames.map((e, index) => (
                                     <div key={index}>
-                                        <Link to ={`/videogame/${e.id}`}>
+                                        {/* <Link to ={`/videogame/${e.id}`}> */}
                                         <Game
                                         id={e.id}
                                         name={e.name}
@@ -225,12 +235,12 @@ return (
                                         genres={e.createdInDb ?
                                         e.genres.map((s, index) => (<li key={index}>{s.name}</li>)) :
                                         e.genres.map((s, index) => (<li key={index}>{s}</li>))} />
-                                        </Link> 
+                                        {/* </Link>  */}
                                     </div>
                                 ))
                             }
                         </div>  
-                    : <h2>Loading ...</h2>
+                    : <div className={styles.sppiner}></div>
                     }
                 </div>
         
@@ -238,6 +248,7 @@ return (
                     <Paginado paginado={paginado} videoGamesPerPage ={15} allGames = {allGames.length} />
                 </div>
             </div>
-        </div>      
+        </div> 
+        </div>     
     )
 };

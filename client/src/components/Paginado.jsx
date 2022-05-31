@@ -11,17 +11,19 @@ for (let i = 1; i<=Math.ceil(allGames/videoGamesPerPage); i++ ){
 
 return (
     <nav className={styles.paginado}>
-        <ul className="paginado">
-            {
-             pageNumbers && pageNumbers.map (num => {
-                 return (
-                 <li className="number" key={num}>
-                     <button onClick = {() => paginado(num)} key={num} className='button'>{num}</button>
-                 </li>
-                 )
-             })   
-            }
-        </ul>
+        <div className={styles.pages}>    
+            <ul >
+                {
+                pageNumbers && pageNumbers.map (num => {
+                    return (
+                    <li key={num}>
+                        <button onClick = {() => paginado(num)} key={num} className={styles.pagNum}>{num}</button>
+                    </li>
+                    )
+                })   
+                }
+            </ul>
+        </div>    
     </nav>
 )
 

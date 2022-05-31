@@ -5,13 +5,31 @@ body{
    display: flex;
    flex-direction: column;
    justify-content: center;
-   align-items: center;
    position: relative;
-   background: #000000;
-   
-   
 }
 
+
+.header{
+    display: flex;
+    background-color: #000000;
+    justify-content: left;
+    align-items: center;
+}
+
+.home{
+    background-color: transparent;
+}
+
+.home img{
+    width: 50px;
+    height: 50px; 
+    border-radius: 10px;
+    transition-duration: 0.5s;
+  }
+.home img:hover{
+      filter: brightness(2);
+      filter: blur(.5px);
+  }
 
 .h1{
     color: #ffffff;
@@ -23,25 +41,38 @@ body{
     background-size: cover;
 }
 
+.paginado1{
+    justify-content: center;
+    display: flex;
+}
 
 
 .main{
-    position: absolute;
-    display: grid;
-    grid-template-columns: 15% 80%;
-    align-items:flex-start;
-    gap: 5%;
-    top: 160%;
+    display: flex;
     
 }
 
 .games{
     width: 100%;
     display: grid;
-    grid-template-columns: auto auto auto;
-    align-items:center;
-
+    grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+    gap: 1.5em;
+    margin: 0 1em;
  }
+
+.containerCard{
+    border: 1px solid white;
+    border-radius: 10px;
+}
+.containerCard a{
+    text-decoration: none;
+    color: white;
+}
+.containerCard:hover{
+    box-shadow: -5px 4px 44px -3px rgba(255,255,255,0.75);
+    -webkit-box-shadow: -5px 4px 44px -3px rgba(255,255,255,0.75);
+    -moz-box-shadw: -5px 4px 44px -3px rgba(255,255,255,0.75);
+}
 
  .sppiner{
     width: 3rem;
@@ -89,7 +120,7 @@ body{
  flex-direction: column;
  height: 200%;
  width: 30%;
- background-color:transparent;
+ background-color: #000000;
  position: absolute;
  left: 20px;
  top: 200px;
@@ -99,17 +130,22 @@ body{
  animation: fadein 1s;
 }
 
-.divSections{
-   
+.containerAside{
    color:white;
    background-color: #000000;
-   font-family: Helvetica;
-   text-decoration: none;
-   justify-content: left;
    display: flex;
    flex-direction: column;
-   height: 100%;
-   width: 100%;
+   transition-duration: 0.5s;
+   background-color: #35343481;
+   padding: 0.5em;
+   border-radius: 8px;
+   position: sticky;
+   height: 16em;
+   top: 0;
+   margin: 0 1em;
+}
+.containerAside a{
+    color: white;
 }
 
 .divSections2{
@@ -126,6 +162,10 @@ body{
     right: 550px;
     top: 100px;
  }
+
+.divSections:hover{
+    color: grey;
+}
 
 .h1{
     display: flex;
@@ -161,40 +201,43 @@ pButt:hover{
     
 }
 
+.containerSearch{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1em 0;
+}
 
 .divOrder {
     color: #fff;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     width:200px;
-    height: 45px;
-    position: absolute;
+    padding: .5em;
+    font-weight: 100;
     padding-left: 1.2em;
     justify-content: center;
     background-color: #35343481;
-    top: 150px;
-    right: 70px;
     border-radius: 8px; 
     transition-duration: .5s;
-      
 }
 
 select{
-    -webkit-appearance:none;
+    /* -webkit-appearance:none;
    -moz-appearance:none;
-   -ms-appearance:none;
-   appearance:none;
-   outline:0;
-   box-shadow:none;
-   border:0!important;
+   -ms-appearance:none;*/
+   /* appearance:initial; */
+   outline: 0;
+   border: 0;
    background: #0a4b3e;
    background-image: none;
    flex: 1;
-   padding: 0 .3em ;
-   color:#fff;
-   cursor:pointer;
+   padding: 0em .3em ;
+   color:rgb(255, 255, 255);
+   cursor: pointer;
    font-size: 1em;
-   font-family: 'Open Sans', sans-serif;  
+   font-family: Helvetica;  
 }
 
 select::-ms-expand {
@@ -202,18 +245,15 @@ select::-ms-expand {
 }
 
 .divOrder select{
-   position: relative;
+   text-align: center;
    display: flex;
    width: 60px;
-   height: 50px;
+   height: 60px;
    line-height: 1;
-   font-weight: 1000;
-   font-style: inherit;
+   font-weight: 700;
    background: #67686800;
    transition-duration: .5s;
-   overflow:hidden;
    border-radius: .25em;
-   
 }
 
 .divOrder select:hover{
@@ -222,6 +262,11 @@ select::-ms-expand {
 }
 
 .divOrder:hover{
+    color: grey;
+}
+
+.divOrder:hover select{
+    background-color: transparent;
     color: grey;
 }
 
@@ -235,29 +280,12 @@ select::-ms-expand {
    background: #2b2e2e;
    cursor:pointer;
    pointer-events:none;
-   transition: .25s all ease;
+   transition: 2s all ease;
 }
 
 .divOrder select:hover::after{
     color: #850101;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .divFilter{
@@ -332,29 +360,10 @@ select:hover{
  }
 
 
- .header{
-     display: flex;
-     background-color: #000000;
-     justify-content: left;
-     align-items: center;
-     position: absolute;
-     left: 20px;
-     top: 60px;
- }
+ 
 
-.home{
-      background-color: transparent;
- }
-.home img{
-    width: 40px;
-    height: 40px; 
-    border-radius: 10px;
-    transition-duration: 0.5s;
-  }
-.home img:hover{
-      filter: brightness(2);
-      filter: blur(.5px);
-  }
+
+
  
   .searchBar{
     display: flex; 
@@ -363,6 +372,12 @@ select:hover{
     position: absolute;
     left: 80px;
  }
+
+ .paginado2{
+    display: flex;
+    position: relative;
+    bottom: 100px;
+}
 
  
  

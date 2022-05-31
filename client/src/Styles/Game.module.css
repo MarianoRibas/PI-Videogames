@@ -1,13 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
 .image{
-    width: 70%;
     transition-delay: 0.1s;
     transition-duration: 0.3s;
     animation: fadein 1s;
-    /* filter: blur(.px); */
-}
-.image:hover{
-    width: 80%;
-    
+    width: 100%;
+    height: 155px;
+    border-radius: 10px 10px 0 0;
 }
 .conteiner{
     width: 80%;
@@ -17,10 +16,9 @@
     flex-direction: column;
     background-color: #ffffff;
     align-items:center;
-    
 }
 .conteiner:hover{
-    box-shadow: 0 0 20px rgb(253, 253, 253);
+    
 }
 
 @keyframes fadein{
@@ -32,15 +30,17 @@
     }
 }
 
-.data{
-    color: white;
-    text-decoration: none;
-    font-weight: lighter;
-    font-size: 15px;
-    justify-content: left;
-    margin: 30px 70px 30px 70px;
-    transition-duration: 0.2s;
-    animation: fadein 1s;
+.containerInfo{
+    font-family: 'Roboto';
+}
+
+.containerInfo ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}
+.containerInfo ul li{
+
 }
 
 /* .data:hover{

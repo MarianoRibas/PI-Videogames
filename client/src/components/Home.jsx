@@ -147,9 +147,10 @@ return (
                     
                 </div>    
                 <div className={styles.divSideBar} >
-                    <aside  >
-                    <div >
-                    <Link to='/videogame'><h2>Create Game</h2></Link>
+                    <aside>
+                    <div className={styles.divSections}>
+                    <Link to='/videogame' style={{ textDecoration: 'none' }}><h2 className={styles.divSections}>Add a Game</h2></Link>
+                    <Link to='/dBGames' style={{ textDecoration: 'none' }}><h2 className={styles.divSections}>My Games</h2></Link>
                     <button onClick={e => {handleReload(e)}}>Re-load All Games</button>
                     </div>
                     <div  >

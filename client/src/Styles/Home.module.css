@@ -66,16 +66,36 @@ body{
 }
 
 .divSideBar{
- display: grid;
+ display: block;
  grid-template-columns: auto;
- align-items:left;
+ align-items:center;
  background-color:transparent;
  position: absolute;
  left: 20px;
  top: 200px;
+ justify-content: left;
 }
 
+.divSections{
+   color:white;
+   background-color: #000000;
+   text-decoration:line-through(rgb(255, 255, 255));
+   font-family: Helvetica;
+   text-decoration: none;
+   position: relative;
+   justify-content: left;
+}
 
+.divSections h2{
+    color:rgb(255, 255, 255);
+    position: relative;
+    display: flexbox;
+    justify-content: left;
+    
+    text-decoration-line: underline(black);
+    font-family: Helvetica;
+    text-decoration: none;
+ }
 
 
 

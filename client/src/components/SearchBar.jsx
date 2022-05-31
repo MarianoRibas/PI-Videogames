@@ -24,7 +24,10 @@ export default function SearchBar () {
         <div >
             <form className={styles.container}>
             <input type= "text" value={search} placeholder="Search a game..." onChange={(e) => handleInputChange(e)}/>
-            <button type="submit" onClick={(e) => handleSubtmit(e)}><img src={image}/></button>
+            <button type="submit" onClick={(e) => handleSubtmit(e)}>
+                {/* <img src={image}/> */}
+                </button>
+                <p>I</p>
             </form>
         </div>
     )

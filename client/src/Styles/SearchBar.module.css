@@ -1,14 +1,15 @@
 .container{
     width: 150%;
-    height: 20px;
+    height: 25px;
     max-width: 700px;
-    background: rgba(255, 255, 255, 0.062);
+    background: rgba(255, 255, 255, 0.137);
     display: flex;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 40px;
     padding: 10px;
     transition-duration: 1s;
-
+    position: relative;
+    position: relative;
 }
 
 .container:hover{
@@ -33,13 +34,13 @@
     
 }
 
-.container button img{
+/* .container button img{
 width: 15px;
 height: 20px;
 size: 20px;
 transition-duration: 1s;
-}
-.container:hover button img{
+} */
+/* .container:hover button img{
     color: black;
     background-color: black;
     width: 15px;
@@ -47,18 +48,63 @@ transition-duration: 1s;
     size: 20px;
     border-spacing: 100px;
     border-radius: 40px;
-}
+} */
 
-.container button img:hover{
+/* .container button img:hover{
     filter:brightness(300)
-    }
+    } */
 
-.container button{
+/* .container button{
     border: 0;
-    border-radius: 40%;
+    border-radius: 100%;
     width: 30px;
-    background: #99999900;
+    height: 30px;
+    background-color:aqua;
+    border-color: white;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    } */
+
+    .container button{
+        border: 0.2;
+        border-radius: 100%;
+        width: 15px;
+        height: 15px;
+        background-color: rgba(219, 10, 10, 0);
+        background-size: .5px;
+        font-size: 20px;
+        transform:skewX(90deg);
+        color: white;
+        transform: rotate(-35deg);
+        background-position-x: right 5px;
+        border-color: rgb(255, 255, 255);
+        border-style:solid;
+        justify-content: center;
+        position: absolute;
+        left: 310px;
+        top: 13px;
+        align-items: center;
+        cursor: pointer;
+        transition-duration: 0.5s;
+        
+
+        }
+    .container p{
+        position: absolute;
+        color:white;
+        transform: rotate(-35deg);
+        right: 22px;
+        top: 2.5px;
+        transition-duration: .5s;
+        font-weight: 400;
+    }
+
+    .container:hover button{
+        border-color: #000000;
+    }
+
+    
+    .container:hover p{
+        color: #000000;
     }

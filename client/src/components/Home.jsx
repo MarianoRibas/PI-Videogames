@@ -138,7 +138,7 @@ return (
                     
                         
                         <select classname= {styles.select} onChange={e => {handleOrder(e)}}>
-                        <option value=""></option>
+                        <option value="">None</option>
                         <option value='desc'>Name (A-Z)</option>
                         <option value='asc'>Name (Z-A)</option>
                         <option value='lowRating'>Lower Rating</option>

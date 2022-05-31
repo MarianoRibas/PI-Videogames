@@ -33,7 +33,11 @@ router.get("/videogames", async function (req, res){
         if (genre || source) {
         const allGames = await getAllVideoGames ();
         const filteredGames = await filter(allGames, source, genre);
-        return res.status(200).send(filteredGames);  
+        if (filteredGames.length>0){
+        return res.status(200).send(filteredGames)
+    } else {
+        return res.status(200).send('No matches found :(')
+    }  
     };
         const allGames = await getAllVideoGames ();
         res.status(200).send(allGames);

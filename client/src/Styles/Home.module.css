@@ -11,17 +11,7 @@ body{
    
    
 }
-.body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #000000;
-    
-    color: #fff;
-     
-}
+
 
 .h1{
     color: #ffffff;
@@ -33,8 +23,29 @@ body{
     background-size: cover;
 }
 
-.sppiner{
+
+
+.main{
+    position: absolute;
+    display: grid;
+    grid-template-columns: 15% 80%;
+    align-items:flex-start;
+    gap: 5%;
+    top: 160%;
+    
+}
+
+.games{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items:center;
+
+ }
+
+ .sppiner{
     width: 3rem;
+    /* width: 100%; */
     height: 3rem;
     flex-direction: column;
     border: 1rem solid #eff2fd;
@@ -64,38 +75,71 @@ body{
         opacity: 0,7;
     }
 }
+@keyframes fadein{
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
 .divSideBar{
- display: block;
- grid-template-columns: auto;
- align-items:center;
+ display: flex;
+ flex-direction: column;
+ height: 200%;
+ width: 30%;
  background-color:transparent;
  position: absolute;
  left: 20px;
  top: 200px;
  justify-content: left;
+ transition-duration: 1s;
+ opacity: 0;
+ animation: fadein 1s;
 }
 
 .divSections{
+   
    color:white;
    background-color: #000000;
-   text-decoration:line-through(rgb(255, 255, 255));
    font-family: Helvetica;
    text-decoration: none;
-   position: relative;
    justify-content: left;
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+   width: 100%;
 }
 
-.divSections h2{
-    color:rgb(255, 255, 255);
+.divSections2{
     position: relative;
-    display: flexbox;
-    justify-content: left;
-    
-    text-decoration-line: underline(black);
+    color:white;
+    background-color: #000000;
     font-family: Helvetica;
     text-decoration: none;
+    justify-content: left;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 200px;
+    right: 550px;
+    top: 100px;
  }
+
+.h1{
+    display: flex;
+    color:white;
+    position: absolute;
+    top: 40%;
+    font-size: 50px;
+    left: -20%;
+    width: 400px;
+}
+
+.h1 h1{
+    font-size: 50px;
+}
 
 .p{
     color: rgba(255, 255, 255, 0.473);
@@ -287,16 +331,6 @@ select:hover{
 
  }
 
- .games{
-    /* display: grid;
-    grid-template-columns: auto auto auto;
-    gap: 2rem;
-    align-items: start; */
-    display: grid;
-    grid-template-columns: auto auto auto;
-    align-items:center;
-
- }
 
  .header{
      display: flex;

@@ -145,118 +145,214 @@ return (
                         <option value='highRating'>Higher Rating</option>
                         </select>
                     
-                </div>    
-                <div className={styles.divSideBar} >
-                    <aside>
-                    <div className={styles.divSections}>
-                    <Link to='/videogame' style={{ textDecoration: 'none' }}><h2 className={styles.divSections}>Add a Game</h2></Link>
-                    <Link to='/dBGames' style={{ textDecoration: 'none' }}><h2 className={styles.divSections}>My Games</h2></Link>
-                    <button onClick={e => {handleReload(e)}}>Re-load All Games</button>
-                    </div>
-                    <div  >
-                        <div >
-                        {
-                        filteredByGenre.name?
-                        <div>
-                        <p className={styles.p}><i>{filteredByGenre.name}</i><button className={styles.pButt} onClick={() => 
-                        {setFilteredByGenre({...filteredByGenre, name: "", activated:false})
-                        dispatch(deleteAll())}}>X</button></p> 
-                        </div>
-                        : <p></p>
-                        }
-                        </div>
-                        <div >
-                        {
-                        lastGameSearched?
-                        <div className={styles.divButton}>
-                        <p>{lastGameSearched}<button onClick={() => 
-                        {dispatch(deleteSearchedGame());
-                        dispatch(deleteAll())}}>X</button></p>                        
-                        </div>
-                        : <p></p>
-                        
-                        }
-                        </div>
-                        <div >
-                        {  
-                        filteredBySource.name?
-                        <div>
-                        <p>{filteredBySource.name}<button className={styles.divMiddle} onClick={() => 
-                        {setFilteredBySource({...filteredBySource, name: "", activated:false})
-                        dispatch(deleteAll())}}>X</button></p>                        
-                        </div>
-                        : <p></p>
-                        }
-                        </div>
-                    </div>
-                    <div >
-                        <div classname= {styles.divSelFilter} >   
-                        <select onChange={(e) => 
-                        {setFilteredByGenre({...filteredByGenre, name:e.target.value, activated: true}) 
-                        }}>
-                            <option value="">Filter by Genre</option>
-                            <option value="Strategy">Strategy</option>
-                            <option value="Adventure">Adventure</option>
-                            <option value="Indie">Indie</option>
-                            <option value="RPG">RPG</option>
-                            <option value="Action">Action</option>
-                            <option value="Shooter">Shooter</option>
-                            <option value="Casual">Casual</option>
-                            <option value="Simulation">Simulation</option>
-                            <option value="Puzzle">Puzzle</option>
-                            <option value="Arcade">Arcade</option>
-                            <option value="Platformer">Platformer</option>
-                            <option value="Racing">Racing</option>
-                            <option value="Massively Multiplayer">Massively Multiplayer</option>
-                            <option value="Sports">Sports</option>
-                            <option value="Fighting">Fighting</option>
-                            <option value="Family">Family</option>
-                            <option value="Board Games">Board Games</option>
-                            <option value="Educational">Educational</option>
-                            <option value="Card">Card</option>
-                        </select> 
-                        <i></i>
-                        </div>
-                        <div className={styles.divSelFilter} >
-                            <select classname= {styles.selSelect} onChange={(e) => 
-                        {setFilteredBySource({...filteredBySource, name:e.target.value, activated: true})}}>
-                            <option value="">Filter by Origin</option>
-                            <option value="created">Added by User</option>
-                            <option value="existant">Existant</option>
-                            </select>
-                        </div>
-                    </div>
-                    </aside>    
                 </div>
-                <div className={styles.div}>
-                    <Paginado paginado={paginado} videoGamesPerPage ={15} allGames = {allGames.length} />
-                    {
-                    (currentGames.length > 0) ? 
-                        <div className={styles.games}>
-                            {
-                                currentGames.map((e, index) => (
-                                    <div key={index}>
-                                        {/* <Link to ={`/videogame/${e.id}`}> */}
-                                        <Game
-                                        id={e.id}
-                                        name={e.name}
-                                        image={e.image}
-                                        genres={e.createdInDb ?
-                                        e.genres.map((s, index) => (<li key={index}>{s.name}</li>)) :
-                                        e.genres.map((s, index) => (<li key={index}>{s}</li>))} />
-                                        {/* </Link>  */}
-                                    </div>
-                                ))
-                            }
-                        </div>  
-                    : <div className={styles.sppiner}></div>
-                    }
-                    <div>
+                {(Array.isArray(currentGames)) ?
+                <div>    
                     <Paginado paginado={paginado} videoGamesPerPage ={15} allGames = {allGames.length} />
                 </div>
-                </div>
-        
+                : <p></p>    
+                }
                 
+                <div className={styles.main}>
+                    {
+                    (currentGames.length > 0 && Array.isArray(currentGames))?
+                    <div>
+                        <aside className={styles.divSections}>
+                        <div >
+                        <Link to='/videogame' style={{ textDecoration: 'none' }}><h2 className={styles.divSections}>Add a Game</h2></Link>
+                        <Link to='/dBGames' style={{ textDecoration: 'none' }}><h2 className={styles.divSections}>My Games</h2></Link>
+                        <button onClick={e => {handleReload(e)}}>Re-load All Games</button>
+                        </div>
+                        <div >
+                            <div >
+                            {
+                            filteredByGenre.name?
+                            <div>
+                            <p className={styles.p}><i>{filteredByGenre.name}</i><button className={styles.pButt} onClick={() => 
+                            {setFilteredByGenre({...filteredByGenre, name: "", activated:false})
+                            dispatch(deleteAll())}}>X</button></p> 
+                            </div>
+                            : <p></p>
+                            }
+                            </div>
+                            <div >
+                            {
+                            lastGameSearched?
+                            <div className={styles.divButton}>
+                            <p>{lastGameSearched}<button onClick={() => 
+                            {dispatch(deleteSearchedGame());
+                            dispatch(deleteAll())}}>X</button></p>                        
+                            </div>
+                            : <p></p>
+                            
+                            }
+                            </div>
+                            <div >
+                            {  
+                            filteredBySource.name?
+                            <div>
+                            <p>{filteredBySource.name}<button className={styles.divMiddle} onClick={() => 
+                            {setFilteredBySource({...filteredBySource, name: "", activated:false})
+                            dispatch(deleteAll())}}>X</button></p>                        
+                            </div>
+                            : <p></p>
+                            }
+                            </div>
+                        </div>
+                        <div >
+                            <div classname= {styles.divSelFilter} >   
+                            <select onChange={(e) => 
+                            {setFilteredByGenre({...filteredByGenre, name:e.target.value, activated: true}) 
+                            }}>
+                                <option value="">Filter by Genre</option>
+                                <option value="Strategy">Strategy</option>
+                                <option value="Adventure">Adventure</option>
+                                <option value="Indie">Indie</option>
+                                <option value="RPG">RPG</option>
+                                <option value="Action">Action</option>
+                                <option value="Shooter">Shooter</option>
+                                <option value="Casual">Casual</option>
+                                <option value="Simulation">Simulation</option>
+                                <option value="Puzzle">Puzzle</option>
+                                <option value="Arcade">Arcade</option>
+                                <option value="Platformer">Platformer</option>
+                                <option value="Racing">Racing</option>
+                                <option value="Massively Multiplayer">Massively Multiplayer</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Fighting">Fighting</option>
+                                <option value="Family">Family</option>
+                                <option value="Board Games">Board Games</option>
+                                <option value="Educational">Educational</option>
+                                <option value="Card">Card</option>
+                            </select> 
+                            <i></i>
+                            </div>
+                            <div className={styles.divSelFilter} >
+                                <select classname= {styles.selSelect} onChange={(e) => 
+                            {setFilteredBySource({...filteredBySource, name:e.target.value, activated: true})}}>
+                                <option value="">Filter by Origin</option>
+                                <option value="created">Added by User</option>
+                                <option value="existant">Existant</option>
+                                </select>
+                            </div>
+                        </div>
+                        </aside>    
+                    </div>
+                    : (!Array.isArray(currentGames))? 
+                    <div>
+                        <aside className={styles.divSections2}>
+                        <div >
+                        <Link to='/videogame' style={{ textDecoration: 'none' }}><h2 className={styles.divSections}>Add a Game</h2></Link>
+                        <Link to='/dBGames' style={{ textDecoration: 'none' }}><h2 className={styles.divSections}>My Games</h2></Link>
+                        <button onClick={e => {handleReload(e)}}>Re-load All Games</button>
+                        </div>
+                        <div >
+                            <div >
+                            {
+                            filteredByGenre.name?
+                            <div>
+                            <p className={styles.p}><i>{filteredByGenre.name}</i><button className={styles.pButt} onClick={() => 
+                            {setFilteredByGenre({...filteredByGenre, name: "", activated:false})
+                            dispatch(deleteAll())}}>X</button></p> 
+                            </div>
+                            : <p></p>
+                            }
+                            </div>
+                            <div >
+                            {
+                            lastGameSearched?
+                            <div className={styles.divButton}>
+                            <p>{lastGameSearched}<button onClick={() => 
+                            {dispatch(deleteSearchedGame());
+                            dispatch(deleteAll())}}>X</button></p>                        
+                            </div>
+                            : <p></p>
+                            
+                            }
+                            </div>
+                            <div >
+                            {  
+                            filteredBySource.name?
+                            <div>
+                            <p>{filteredBySource.name}<button className={styles.divMiddle} onClick={() => 
+                            {setFilteredBySource({...filteredBySource, name: "", activated:false})
+                            dispatch(deleteAll())}}>X</button></p>                        
+                            </div>
+                            : <p></p>
+                            }
+                            </div>
+                        </div>
+                        <div >
+                            <div classname= {styles.divSelFilter} >   
+                            <select onChange={(e) => 
+                            {setFilteredByGenre({...filteredByGenre, name:e.target.value, activated: true}) 
+                            }}>
+                                <option value="">Filter by Genre</option>
+                                <option value="Strategy">Strategy</option>
+                                <option value="Adventure">Adventure</option>
+                                <option value="Indie">Indie</option>
+                                <option value="RPG">RPG</option>
+                                <option value="Action">Action</option>
+                                <option value="Shooter">Shooter</option>
+                                <option value="Casual">Casual</option>
+                                <option value="Simulation">Simulation</option>
+                                <option value="Puzzle">Puzzle</option>
+                                <option value="Arcade">Arcade</option>
+                                <option value="Platformer">Platformer</option>
+                                <option value="Racing">Racing</option>
+                                <option value="Massively Multiplayer">Massively Multiplayer</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Fighting">Fighting</option>
+                                <option value="Family">Family</option>
+                                <option value="Board Games">Board Games</option>
+                                <option value="Educational">Educational</option>
+                                <option value="Card">Card</option>
+                            </select> 
+                            <i></i>
+                            </div>
+                            <div className={styles.divSelFilter} >
+                                <select classname= {styles.selSelect} onChange={(e) => 
+                            {setFilteredBySource({...filteredBySource, name:e.target.value, activated: true})}}>
+                                <option value="">Filter by Origin</option>
+                                <option value="created">Added by User</option>
+                                <option value="existant">Existant</option>
+                                </select>
+                            </div>
+                        </div>
+                        </aside>    
+                    </div> 
+                    :<p></p>
+                    }
+                       
+                        {
+                        (currentGames.length > 0 && Array.isArray(currentGames)) ? 
+                            <div className={styles.games}>
+                                {
+                                    currentGames.map((e, index) => (
+                                        <div key={index}>
+                                            {/* <Link to ={`/videogame/${e.id}`}> */}
+                                            <Game
+                                            id={e.id}
+                                            name={e.name}
+                                            image={e.image}
+                                            genres={e.createdInDb ?
+                                            e.genres.map((s, index) => (<li key={index}>{s.name}</li>)) :
+                                            e.genres.map((s, index) => (<li key={index}>{s}</li>))} />
+                                            {/* </Link>  */}
+                                        </div>
+                                    ))
+                                }
+                            </div>  
+                        : (!Array.isArray(currentGames))?<div className={styles.h1}><h1>{allGames}</h1></div> : <div className={styles.sppiner}></div>
+                        }
+                    
+                </div>
+                {(Array.isArray(currentGames)) ?
+                <div>    
+                    <Paginado paginado={paginado} videoGamesPerPage ={15} allGames = {allGames.length} />
+                </div>
+                : <p></p>
+                }  
             
              
         </div>     

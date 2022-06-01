@@ -204,11 +204,11 @@ return (
                                     <option value="existant">Existant</option>
                                     </select>
                                 </div>
-                                <div>
+                                <div className={styles.containerFiltersApplied}>
                                 {
                                 filteredByGenre.name?
-                                <div>
-                                <p className={styles.p}><i>{filteredByGenre.name}</i><button className={styles.pButt} onClick={() => 
+                                <div >
+                                <p className={styles.filtersApplied}><i>{filteredByGenre.name}</i><button onClick={() => 
                                 {setFilteredByGenre({...filteredByGenre, name: "", activated:false})
                                 dispatch(deleteAll())}}>X</button></p> 
                                 </div>
@@ -218,7 +218,7 @@ return (
                                 <div > */}
                                 {
                                 lastGameSearched?
-                                <div className={styles.divButton}>
+                                <div className={styles.filtersApplied}>
                                 <p>{lastGameSearched}<button onClick={() => 
                                 {dispatch(deleteSearchedGame());
                                 dispatch(deleteAll())}}>X</button></p>                        
@@ -231,7 +231,7 @@ return (
                                 {  
                                 filteredBySource.name?
                                 <div>
-                                <p>{filteredBySource.name}<button className={styles.divMiddle} onClick={() => 
+                                <p className={styles.filtersApplied}>{filteredBySource.name}<button onClick={() => 
                                 {setFilteredBySource({...filteredBySource, name: "", activated:false})
                                 dispatch(deleteAll())}}>X</button></p>                        
                                 </div>

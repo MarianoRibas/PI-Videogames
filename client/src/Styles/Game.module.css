@@ -17,9 +17,9 @@
     background-color: #ffffff;
     align-items:center;
 }
-.conteiner:hover{
-    
-}
+/* .conteiner:hover{
+    width: 100%;
+} */
 
 @keyframes fadein{
     from{
@@ -30,12 +30,23 @@
     }
 }
 
+
+
+
+
+
 .containerInfo{
     font-family: 'Helvetica';
-    padding: 0.5em;
-    background-color: #242222;
-    height: 8em;
-    text-shadow: 6px 4px 14px rgb(0 0 0 / 97%);
+    /* padding: 11em 0em 0em 0.5em; */
+    background-color: rgba(0, 0, 5, 0.5);
+    height: 124px;
+    width: 290px;
+    text-align: left;
+    position: absolute;
+    top: 11em;
+    /* left: 0.5em; */
+    padding-left: 0.5em;
+    text-shadow: 6px 4px 14px rgb(0 0 0 / 50%);
 }
 
 .containerInfo ul{
@@ -45,6 +56,16 @@
 }
 .containerInfo ul li{
 
+}
+
+.container{
+    /* background-color: none; */
+   background-image: url('https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg');
+   max-height: 300px;
+   max-width: 290px;
+   height: 300px;
+   width: 290px;
+   background-size: 110% 100%; 
 }
 
 /* .data:hover{

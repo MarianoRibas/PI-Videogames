@@ -248,7 +248,7 @@ return (
                                 {
                                     currentGames.map((e, index) => (
                                         <div className={styles.containerCard} key={index}>
-                                            <Game
+                                            <Game 
                                             id={e.id}
                                             name={e.name}
                                             image={e.image}

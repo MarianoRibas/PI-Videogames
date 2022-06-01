@@ -73,18 +73,19 @@ body{
     border-radius: 10px;
     transition-duration: .5s;
     animation: fadein 2s;
-    background-color: #242222;
+    /* background-color: #242222; */
+    text-align: left;
 }
 .containerCard a{
     text-decoration: none;
     color: white;
 }
-.containerCard:hover{
+/* .containerCard:hover{
     box-shadow: -5px 4px 44px -3px rgba(120, 120, 120, 0.427);
     -webkit-box-shadow: -5px 4px 44px -3px rgba(141, 141, 141, 0.374);
     -moz-box-shadw: -5px 4px 44px -3px rgba(126, 126, 126, 0.381);
     
-}
+} */
 
  .sppiner{
     width: 3rem;

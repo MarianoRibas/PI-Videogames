@@ -2,10 +2,11 @@
     width: 150%;
     height: 25px;
     max-width: 700px;
-    background: rgba(255, 255, 255, 0.137);
+    /* background: rgba(255, 255, 255, 0.137); */
+    background-color: #35343481;
     display: flex;
     align-items: center;
-    border-radius: 15px;
+    border-radius: 13px;
     padding: 10px;
     transition-duration: 1s;
     position: relative;
@@ -86,7 +87,7 @@ transition-duration: 1s;
         top: 13px;
         align-items: center;
         cursor: pointer;
-        transition-duration: 0.5s;
+        transition-duration: 1s;
         
 
         }
@@ -96,7 +97,7 @@ transition-duration: 1s;
         transform: rotate(-35deg);
         right: 22px;
         top: 2.5px;
-        transition-duration: .5s;
+        transition-duration: 1s;
         font-weight: 400;
     }
 

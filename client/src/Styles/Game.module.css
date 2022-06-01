@@ -31,7 +31,10 @@
 }
 
 .containerInfo{
-    font-family: 'Roboto';
+    font-family: 'Helvetica';
+    padding: 0.5em;
+    background-color: #242222;
+    height: 8em;
 }
 
 .containerInfo ul{

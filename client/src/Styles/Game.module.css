@@ -38,9 +38,14 @@
 .containerInfo{
     font-family: 'Helvetica';
     /* padding: 11em 0em 0em 0.5em; */
-    background-color: rgba(0, 0, 5, 0.5);
+    /* background-color: rgba(0, 0, 5, 0.5); */
+    background: linear-gradient(
+        hsl(0 0% 0% / 0),
+        hsl(0 0% 10% / .5),
+        hsl(0 0% 0% /1)
+    );
     height: 124px;
-    width: 290px;
+    width: 282px;
     text-align: left;
     position: absolute;
     top: 11em;
@@ -58,14 +63,8 @@
 
 }
 
-.container{
-    /* background-color: none; */
-   background-image: url('https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg');
-   max-height: 300px;
-   max-width: 290px;
-   height: 300px;
-   width: 290px;
-   background-size: 110% 100%; 
+.container:hover{
+    transform: scale(1.05);
 }
 
 /* .data:hover{

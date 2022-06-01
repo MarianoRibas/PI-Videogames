@@ -14,8 +14,9 @@ export default function Game ({name, genres, image,id}) {
             width: '290px',
             backgroundSize: '110% 100%',
             position: 'relative',
-            borderRadius: '8px 8px 0 0'
-        }} >
+            borderRadius: '8px 8px 0 0',
+            transitionDuration:'.2s'
+        }} className={styles.container}>
             <NavLink to = {`/videogame/${id}`}>
                 {/* <img src ={image} alt = {name} className={styles.image} /> */}
                 

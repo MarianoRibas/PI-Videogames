@@ -62,11 +62,12 @@ body{
     width: 100%;
     display: grid;
     /* grid-template-columns: repeat(auto-fill, minmax(12em, 1fr)); */
-    grid-template-columns: .6fr .6fr .6fr;
+    grid-template-columns: .2fr .2fr .2fr;
     grid-gap: 1.5em;
-    gap: 5em;
-    margin: 0 1em;
- }
+    /* grid-gap: 5em; */
+    gap: 6em;
+    margin: 0 5em;
+}
 
 .containerCard{
     /* border: 1px solid white; */

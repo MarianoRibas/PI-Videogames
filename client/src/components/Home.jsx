@@ -158,47 +158,18 @@ return (
                         <aside className={styles.containerAside}>
                             <div >
                             <Link to='/videogame' style={{ textDecoration: 'none' }}><h2 className={styles.divSections}>Add a Game</h2></Link>
+                            </div>
+                            <div>
                             <Link to='/dBGames' style={{ textDecoration: 'none' }}><h2 className={styles.divSections}>My Games</h2></Link>
                             {/* <button onClick={e => {handleReload(e)}}>Re-load All Games</button> */}
                             </div>
-                            <div >
-                                <div >
-                                {
-                                filteredByGenre.name?
-                                <div>
-                                <p className={styles.p}><i>{filteredByGenre.name}</i><button className={styles.pButt} onClick={() => 
-                                {setFilteredByGenre({...filteredByGenre, name: "", activated:false})
-                                dispatch(deleteAll())}}>X</button></p> 
-                                </div>
-                                : <p></p>
-                                }
-                                </div>
-                                <div >
-                                {
-                                lastGameSearched?
-                                <div className={styles.divButton}>
-                                <p>{lastGameSearched}<button onClick={() => 
-                                {dispatch(deleteSearchedGame());
-                                dispatch(deleteAll())}}>X</button></p>                        
-                                </div>
-                                : <p></p>
+                            {/* <div > */}
+                                {/* <div > */}
                                 
-                                }
-                                </div>
-                                <div >
-                                {  
-                                filteredBySource.name?
-                                <div>
-                                <p>{filteredBySource.name}<button className={styles.divMiddle} onClick={() => 
-                                {setFilteredBySource({...filteredBySource, name: "", activated:false})
-                                dispatch(deleteAll())}}>X</button></p>                        
-                                </div>
-                                : <p></p>
-                                }
-                                </div>
-                            </div>
-                            <div >
-                                <div classname= {styles.divSelFilter} >   
+                                {/* </div> */}
+                            {/* </div> */}
+                            {/* <div classname= {styles.divSelFilter} > */}
+                                <div className={styles.divFilter}>   
                                 <select onChange={(e) => 
                                 {setFilteredByGenre({...filteredByGenre, name:e.target.value, activated: true}) 
                                 }}>
@@ -223,9 +194,9 @@ return (
                                     <option value="Educational">Educational</option>
                                     <option value="Card">Card</option>
                                 </select> 
-                                <i></i>
+                                
                                 </div>
-                                <div className={styles.divSelFilter} >
+                                <div className={styles.divFilter2}>
                                     <select classname= {styles.selSelect} onChange={(e) => 
                                 {setFilteredBySource({...filteredBySource, name:e.target.value, activated: true})}}>
                                     <option value="">Filter by Origin</option>
@@ -233,11 +204,44 @@ return (
                                     <option value="existant">Existant</option>
                                     </select>
                                 </div>
-                            </div>
+                                <div>
+                                {
+                                filteredByGenre.name?
+                                <div>
+                                <p className={styles.p}><i>{filteredByGenre.name}</i><button className={styles.pButt} onClick={() => 
+                                {setFilteredByGenre({...filteredByGenre, name: "", activated:false})
+                                dispatch(deleteAll())}}>X</button></p> 
+                                </div>
+                                : <p></p>
+                                }
+                                {/* </div>
+                                <div > */}
+                                {
+                                lastGameSearched?
+                                <div className={styles.divButton}>
+                                <p>{lastGameSearched}<button onClick={() => 
+                                {dispatch(deleteSearchedGame());
+                                dispatch(deleteAll())}}>X</button></p>                        
+                                </div>
+                                : <p></p>
+                                
+                                }
+                                {/* </div>
+                                <div > */}
+                                {  
+                                filteredBySource.name?
+                                <div>
+                                <p>{filteredBySource.name}<button className={styles.divMiddle} onClick={() => 
+                                {setFilteredBySource({...filteredBySource, name: "", activated:false})
+                                dispatch(deleteAll())}}>X</button></p>                        
+                                </div>
+                                : <p></p>
+                                }
+                                </div>
+                            {/* </div> */}
                         </aside>    
                     : <p></p>
                     }
-                       
                         {
                         (currentGames.length > 0 && Array.isArray(currentGames)) ? 
                             <div className={styles.games}>

@@ -1,3 +1,24 @@
+.header{
+    display: flex;
+    background-color: #000000;
+    margin-top: 2.7em;
+    justify-content: left;
+    align-items: center;
+}
+
+
+.homeD img{
+    width: 50px;
+    height: 50px; 
+    border-radius: 10px;
+    transition-duration: 0.5s;
+    margin-left: 0.5rem;
+    
+  }
+.home:hover{
+      filter: brightness(2);
+      filter: blur(.5px);
+  }
 .sppiner{
     width: 3rem;
     /* width: 100%; */
@@ -50,8 +71,10 @@
     align-content: center;
     margin-top: 6rem;
     padding: 3rem;
-    transform-origin: right;
-    margin: 6rem 4rem 0 4rem;
+    /* transform-origin: right; */
+    /* transform-origin: bottom; */
+    
+    margin: 1rem 5rem 0 5rem;
     background: linear-gradient(180deg, rgba(110, 110, 110, 0.543) 0%, rgba(0,0,0,1) 39%);
     /* background: linear-gradient(
         rgb(64, 64, 64),
@@ -59,22 +82,24 @@
         hsl(0 0% 0% /0)
     ); */
     /* background: linear-gradient(180deg, rgba(110,110,110,1) 0%, rgba(70,70,70,1) 36%, rgba(77,77,77,1) 70%, rgba(0,0,0,1) 100%); */
-    
+    transform:scale(0.9);
     border-radius: 8px;
-    
-    animation: slide 1s;
+    animation: fadein 1s;
 
 }
 
 @keyframes slide{
     from{
         opacity: 0;
+        transform: scaleX(0);
         
-        transform: scaleX(0)
     }
     to{
         opacity: 1;
         transform: scaleX(1);
+        
+        
+        /* transform: scale(0.9); */
         
     }
 }

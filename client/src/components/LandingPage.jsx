@@ -23,7 +23,7 @@ export default function LandingPage () {
             <Link to ='/home'>
             <div>
             {allGames.length>0?
-            <button className={styles.button}>START</button>
+            <button className={styles.button}>ACCESS</button>
             
             : <div className={styles.sppiner}></div>}
             </div>

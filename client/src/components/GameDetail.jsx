@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../actions/index";
 import { useEffect } from "react";
 import styles from "../Styles/Details.module.css"
-
+import home from './home3.png'
 export default function GameDetail () {
 
 const dispatch = useDispatch();
@@ -13,8 +13,17 @@ const gameId = useParams();
 gameId.toString();
 useEffect(() => {dispatch(getDetail(gameId.id))}, [dispatch]);
 const p = "<"
+
+
 return (
-    <div >
+    <div>
+    <header className={styles.header}>
+                <Link to='/home'>
+                <div className={styles.homeD}>
+                    <img  src={home}/>
+                </div>
+                    </Link>
+            </header>
      { Object.keys(detail).length > 0?  
     <div className={styles.background} style={{color:'white'}}>
         

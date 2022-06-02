@@ -12,11 +12,32 @@ const detail = useSelector((state) => state.detail);
 const gameId = useParams();
 gameId.toString();
 useEffect(() => {dispatch(getDetail(gameId.id))}, [dispatch]);
-
+const p = "<"
 return (
-    <div >
-        <div className={styles.background}>
-        <div className={styles.words}>
+    <div className={styles.background} style={{color:'white',}}>
+        <div className={styles.mainConteiner}>
+            
+            <div>
+                <img src={detail.image} alt="" className={styles.gameImage}/>
+                {/* <p>ACA VA LA IMG</p> */}
+                <div>
+                    <p>Rating:{detail.rating}</p>
+                    <p>{detail.platforms}</p>
+                    <p>{detail.genres}</p>
+                    <p>{detail.releaseDate}</p>
+                </div>
+            </div>
+            <div>
+                <h1 className={styles.title}>{detail.name}</h1>
+                <p>{detail.description}</p>
+            </div>
+            <div>
+                <p>{p}</p>
+            </div>
+        </div>
+        
+        {/* <div >
+        <div >
             {
             (detail.length === 0) ?
                 <div >
@@ -69,7 +90,7 @@ return (
                 <button className={styles.button}>Go back!</button>
             </Link>
         </div>
-        </div>
+        </div> */}
     </div>
 )
 };

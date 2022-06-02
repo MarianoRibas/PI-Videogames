@@ -7,8 +7,16 @@ body{
    flex-direction: column;
    justify-content: center;
    position: relative;
+   
 }
 
+.background2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    filter: blur(4px);
+ }
 
 .header{
     display: flex;
@@ -65,8 +73,8 @@ body{
     grid-template-columns: .2fr .2fr .2fr;
     grid-gap: 1.5em;
     /* grid-gap: 5em; */
-    gap: 6em;
-    margin: 0 5em;
+    gap: 2.5em;
+    margin: 0 2.5em;
 }
 
 .containerCard{
@@ -141,16 +149,19 @@ body{
 
 .containerAside{
    color:white;
-   /* background-color: #000000; */
    display: flex;
    flex-direction: column;
    align-items: flex-start;
    transition-duration: 0.5s;
-   background-color: #35343481;
+   background: linear-gradient(
+    #35343481,
+    hsl(0 0% 0% / 0)  
+    );
+   border-width: 10px;
    padding: 0.5em;
    border-radius: 8px;
    position: sticky;
-   height: 23em;
+   height: 22em;
    top: 0;
    margin: 0 1em;
    animation: fadein 2s;

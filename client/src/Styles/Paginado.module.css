@@ -28,6 +28,7 @@ ul {
   }
 
   .pagNum:hover{
-      font-size: 120%;
-      filter: brightness(100);
+      /* font-size: 120%; */
+      filter: brightness(1.5);
+      transform: scale(1.3);
   }

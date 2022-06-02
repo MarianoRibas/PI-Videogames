@@ -52,7 +52,8 @@
 .containerInfo p{
     color: white;
     /* justify-content: right; */
-    background-color: hsl(100 100% 20% / 1);
+    background-color: hsl(100 100% 20% / .7);
+    /* background-color: rgb(109, 0, 0); */
     width: max-content;
     cursor: pointer;
     display: inline-block;
@@ -86,7 +87,8 @@
 }
 
 .containerInfo p:hover{
-    filter: brightness(1.5);
+    background-color: hsl(100 100% 20% / 1);
+    filter: brightness(1.2);
 }
 
 

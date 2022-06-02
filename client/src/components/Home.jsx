@@ -9,7 +9,7 @@ import SearchBar from './SearchBar';
 import styles from '../Styles/Home.module.css'
 // import home from '../images/home3.png'
 import home from './home3.png'
-
+import GameDetail from './GameDetail';
 
 
 export default function Home () {
@@ -18,6 +18,7 @@ export default function Home () {
     const allGames = useSelector((state) => state.videoGames);
     const lastGameSearched = useSelector((state) => state.lastGameSearched);
     const allGenres = useSelector((state) => state.genres);
+    const detail = useSelector((state) => state.detail);
     let genresCount =  0; 
     const [currentPage, setCurrentPage] = useState(1);
     const [order, setOrder] = useState("");
@@ -118,6 +119,7 @@ useEffect (() => {
 //   
 
 return (
+    
         <div className={styles.background}>
             
             <header className={styles.header}>
@@ -269,6 +271,8 @@ return (
                 </div>
                 : <p></p>
                 }  
-        </div>     
+        </div> 
+        
+   
     )
 };

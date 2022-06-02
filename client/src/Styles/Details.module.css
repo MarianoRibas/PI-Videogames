@@ -1,0 +1,32 @@
+.mainConteiner{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    gap: 3rem;
+
+}
+
+.background{
+    display: flex;
+    align-content: center;
+    margin-top: 4rem;
+    padding: 4rem;
+    /* background-color: aqua; */
+    background: linear-gradient(
+        rgb(64, 64, 64),
+        hsl(0 0% 10% / .5),
+        hsl(0 0% 0% /0)
+    );
+    transform: scale(.9);
+    border-radius: 8px;
+}
+
+.title{
+    text-align: left;
+}
+
+.gameImage{
+    height: 14rem;
+    width: 21rem;
+    border-radius: 8px;
+}

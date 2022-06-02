@@ -15,7 +15,7 @@ export default function Game ({name, genres, image,id}) {
             backgroundSize: '110% 100%',
             position: 'relative',
             borderRadius: '8px 8px 0 0',
-            transition:'transform .5s ease'
+            transition: 'transform .5s ease'
         }} className={styles.container}>
             {/* <NavLink to = {`/videogame/${id}`}> */}
                 {/* <img src ={image} alt = {name} className={styles.image} /> */}

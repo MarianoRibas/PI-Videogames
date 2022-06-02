@@ -324,6 +324,7 @@ select::-ms-expand {
 }
 
 .containerFiltersApplied{
+    
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -331,7 +332,8 @@ select::-ms-expand {
 }
 
 .filtersApplied{
-    color: #7a7a7a;
+    /* color: #7a7a7a; */
+    color: rgb(128, 177, 54);
     font-family: helvetica;
     font-style: revert;
     font-weight: 100;

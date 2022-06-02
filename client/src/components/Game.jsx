@@ -15,9 +15,9 @@ export default function Game ({name, genres, image,id}) {
             backgroundSize: '110% 100%',
             position: 'relative',
             borderRadius: '8px 8px 0 0',
-            transitionDuration:'.2s'
+            transition:'transform .5s ease'
         }} className={styles.container}>
-            <NavLink to = {`/videogame/${id}`}>
+            {/* <NavLink to = {`/videogame/${id}`}> */}
                 {/* <img src ={image} alt = {name} className={styles.image} /> */}
                 
                 <div className={styles.containerInfo}>
@@ -25,8 +25,11 @@ export default function Game ({name, genres, image,id}) {
                     <ul>
                         {genres}
                     </ul>
+                    <NavLink to={`/videogame/${id}`}>
+                    <p>Learn More</p>
+                    </NavLink>
                 </div>
-            </NavLink>
+            {/* // </NavLink> */}
         </div>
 )
 };

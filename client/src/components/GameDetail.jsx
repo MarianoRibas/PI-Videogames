@@ -14,27 +14,32 @@ gameId.toString();
 useEffect(() => {dispatch(getDetail(gameId.id))}, [dispatch]);
 const p = "<"
 return (
-    <div className={styles.background} style={{color:'white',}}>
+    <div >
+     { Object.keys(detail).length > 0?  
+    <div className={styles.background} style={{color:'white'}}>
+        
         <div className={styles.mainConteiner}>
             
             <div>
                 <img src={detail.image} alt="" className={styles.gameImage}/>
                 {/* <p>ACA VA LA IMG</p> */}
-                <div>
+                <div className={styles.gameInfo}>
                     <p>Rating:{detail.rating}</p>
                     <p>{detail.platforms}</p>
                     <p>{detail.genres}</p>
                     <p>{detail.releaseDate}</p>
                 </div>
             </div>
-            <div>
+            <div className={styles.gameDescription}>
                 <h1 className={styles.title}>{detail.name}</h1>
                 <p>{detail.description}</p>
             </div>
-            <div>
-                <p>{p}</p>
-            </div>
         </div>
+            
+            
+            
+            {/* <div><p>{p}</p></div> */}
+            
         
         {/* <div >
         <div >
@@ -91,6 +96,10 @@ return (
             </Link>
         </div>
         </div> */}
+    </div>
+    : <div className={styles.sppiner}></div>
+    }
+    
     </div>
 )
 };

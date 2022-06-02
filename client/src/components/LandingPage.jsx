@@ -17,9 +17,9 @@ export default function LandingPage () {
     
     return (
         <div className={styles.background}>
-            <div>
+            {/* <div>
             <h1 className={styles.title}>WELCOME</h1>
-            </div>
+            </div> */}
             <Link to ='/home'>
             <div>
             {allGames.length>0?

@@ -19,11 +19,12 @@ export function getAllVideoGames () {
     return async (dispatch) => {
         try {
         const allGames = await axios ('http://localhost:3001/videogames')
-        
+        let games = await allGames.data.filter((value, index, self) => index === self.findIndex((t) => (t.name === value.name))
+)
         return dispatch(
             {
             type: GET_ALL_VIDEOGAMES,
-            payload: allGames.data
+            payload: games
                 }
             );
     

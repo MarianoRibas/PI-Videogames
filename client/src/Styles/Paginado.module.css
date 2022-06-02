@@ -17,13 +17,14 @@ ul {
       border-color: green;
   } */
   .pagNum{
-      background-color: rgba(240, 255, 255, 0);
-      color: rgb(167, 167, 167);
-      font-family: Helvetica;
-      font-size: 100%;
-      font-weight:0;
-      font-style:oblique;
-      transition-duration: 0.2s;
+    background-color: rgba(240, 255, 255, 0);
+    color: rgb(167, 167, 167);
+    font-family: Helvetica;
+    font-size: 100%;
+    font-weight: 0;
+    font-style: oblique;
+    transition-duration: 0.2s;
+    border: none;
 
   }
 

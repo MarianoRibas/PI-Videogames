@@ -1,0 +1,78 @@
+.backgroundCreate{
+    display: flex;
+    align-content: center;
+    margin-top: 6rem;
+    padding: 3rem;
+    margin: 5rem 5rem 0 5rem;
+    background: linear-gradient(180deg, rgba(110, 110, 110, 0.543) 0%, rgba(0,0,0,1) 20%);
+    transform:scale(0.9);
+    border-radius: 8px;
+    animation: fadein 1s;
+    font-size: 3em;
+    font-weight: bold;
+    
+}
+
+.divMain{
+    width:100%;
+}
+
+.headerCreate header{
+    justify-content: center;
+    
+}
+
+
+.mainContainerCreate{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 4fr 4fr;
+    font-size: 1rem;
+    color:white; 
+    margin-top: 2rem;
+    
+}
+
+.divForm1{
+    
+    text-align: left;
+    gap: 3rem;
+}
+
+.divForm1PerItem{
+    
+    display: flex;
+    flex-direction: column;
+    padding: .5rem;
+}
+
+.divForm1PerItem input{
+    width:75%;
+    /* background-color: hsl(0 0% 58%/.3); */
+    margin-top: .5rem;
+    /* background: linear-gradient(259deg, rgba(0,0,0,1) 10%, rgb(78, 78, 78) 100%); */
+    background-color: hsla(0, 0%, 100%, .16);
+    border-radius: 4px;
+    border-width: 0;
+    padding: .2rem;
+    color:white; 
+
+}
+
+.divForm1PerItem input::selection{
+    border: none;
+}
+
+.addButton{
+    justify-content: right;
+    text-align: right;
+    /* margin-top: 1rem; */
+   
+}
+
+.addButton button{
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    background-color: green;
+    color: white;
+}

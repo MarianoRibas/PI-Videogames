@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { createGame, getGenres } from "../actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import styles from '../Styles/CreateGame.module.css'
+
 
 export default function CreateGame () {
 const dispatch = useDispatch();
@@ -150,81 +152,174 @@ function handleCheckbox(e) {
 }
 
 return (
-    <div>
-        <Link to='/home'><button>Back</button></Link>
-            <h1>Add your videogame</h1>
-            <div>
-                <h5><b>Those with * are obligatory</b></h5>
-            </div>
-        <form onSubmit={(e) =>{handleSubmit(e)}}>
-            <button type="submit">Create videogame</button>
-            <div>
-                <div>
-                    <label>Name * </label>
-                    <input type='text' value={input.name} name='name' onChange={(e) => handleChange(e)} />
-                </div> 
-                <div>
-                    <label>Description * </label>
-                    <input type='text' value={input.description} name='description' onChange={(e) => handleChange(e)} />
-                </div>
-                <div>
-                    <label>Image (link) </label>
-                    <input type='text' value={input.image} name='image' onChange={(e) => handleChange(e)} />
-                </div> 
-                <div>
-                    <label>Release date </label>
-                    <input type='text' value={input.releaseDate} name='releaseDate' onChange={(e) => handleChange(e)} />
-                </div>
-                <div>
-                    <label>Rating </label>
-                    <input type='number' value={input.rating} name='rating' onChange={(e) => handleChange(e)} />
-                </div>
-            </div>
-            <div>
-            {allGenres?
-                <div>
-                    <label>Genres</label>
-                        <select onChange={e => handleSelect(e)}>
-                            {allGenres.map((genres) => {
-                            return <option value={genres.name}>{genres.name}</option>
-                            })}
-                        </select>
-                        <div >
-                        {
-                            input.genres.map(d =>
-                                <div>
-                                    <p>{d}</p>
-                                    <button onClick={(e) => handleDelete(e, d)}>X</button>
-                                </div>)
-                        }
+        <div style={{color:'white'}}>
+            <div className={styles.backgroundCreate}>
+                <div className={styles.divMain}>
+                    <div className={styles.headerCreate}>
+                        <header >
+                            Add a Game
+                        </header>
                     </div>
-                </div>
-                : <p>Loading Genres...</p>
-                }
-            </div>    
-            <div>
-                <label>Platforms</label>
-                <div>
-                    {
-                        platforms.map((platform,i) =>{
-                            return (
-                                <div key={i}>
-                                    <input type='checkbox'
-                                    id={`${i}`}
-                                    checked= {isChecked[i]}
-                                    name={platform}
-                                    value={platform}
-                                    onChange={(e) => handleCheckbox(e)}
-                                    />
-                                    <span>{platform}</span>
+                    <form>
+                        <div className={styles.mainContainerCreate}>
+                            <div className={styles.divForm1}>
+                                <div className={styles.divForm1PerItem}>
+                                    <label>Name</label>
+                                    <input type='text' value={input.name} name='name' onChange={(e) => handleChange(e)} />
+                                </div> 
+                                <div className={styles.divForm1PerItem}>
+                                    <label>Description</label>
+                                <input type='text' value={input.description} name='description' onChange={(e) => handleChange(e)} />
+                                </div>
+                                <div className={styles.divForm1PerItem}>
+                                    <label>Image (Link)</label>
+                                    <input type='text' value={input.image} name='image' onChange={(e) => handleChange(e)} />
+                                </div> 
+                                <div className={styles.divForm1PerItem}>
+                                    <label>Release Date</label>
+                                    <input type='text' value={input.releaseDate} name='releaseDate' onChange={(e) => handleChange(e)} />
+                                </div>
+                                <div className={styles.divForm1PerItem}>
+                                    <label>Rating (0-5)</label>
+                                    <input type='number' value={input.rating} name='rating' onChange={(e) => handleChange(e)} />
+                                </div>
+                            </div>
+                            <div className={styles.forms}>
+                                <div className={styles.divGenres}>
+                                    {allGenres?
+                                        <div>
+                                            <label>Genres</label>
+                                                <select onChange={e => handleSelect(e)}>
+                                                    {allGenres.map((genres) => {
+                                                    return <option value={genres.name}>{genres.name}</option>
+                                                    })}
+                                                </select>
+                                            <div >
+                                                {
+                                                    input.genres.map(d =>
+                                                    <div>
+                                                        <p>{d}</p>
+                                                        <button onClick={(e) => handleDelete(e, d)}>X</button>
+                                                    </div>)
+                                                }
+                                            </div>
+                                        </div>
+                                        : <p>Loading Genres...</p>
+                                        }
                                 </div>    
-                            )
-                        })
-                    }  
-                </div>    
-            </div>  
-        </form>
-    </div>
+                                <div className={styles.divPlatforms}>
+                                    <label>Platforms</label>
+                                        <div>
+                                            {
+                                                platforms.map((platform,i) =>{
+                                                    return (
+                                                        <div key={i}>
+                                                            <input type='checkbox'
+                                                            id={`${i}`}
+                                                            checked= {isChecked[i]}
+                                                            name={platform}
+                                                            value={platform}
+                                                            onChange={(e) => handleCheckbox(e)}
+                                                            />
+                                                            <span>{platform}</span>
+                                                        </div>    
+                                                    )
+                                                })
+                                            }  
+                                        </div>    
+                                </div> 
+                            </div> 
+                        </div>
+                            <div className={styles.addButton}>
+                                <button>Add</button>
+                            </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+    // <div style={{background:'white'}}>
+    //     <Link to='/home'><button>Back</button></Link>
+    //         <h1>Add your videogame</h1>
+    //         <div>
+    //             <h5><b>Those with * are obligatory</b></h5>
+    //         </div>
+    //     <form onSubmit={(e) =>{handleSubmit(e)}}>
+    //         <button type="submit">Create videogame</button>
+    //         <div>
+    //             <div>
+    //                 <label>Name * </label>
+    //                 <input type='text' value={input.name} name='name' onChange={(e) => handleChange(e)} />
+    //             </div> 
+    //             <div>
+    //                 <label>Description * </label>
+    //                 <input type='text' value={input.description} name='description' onChange={(e) => handleChange(e)} />
+    //             </div>
+    //             <div>
+    //                 <label>Image (link) </label>
+    //                 <input type='text' value={input.image} name='image' onChange={(e) => handleChange(e)} />
+    //             </div> 
+    //             <div>
+    //                 <label>Release date </label>
+    //                 <input type='text' value={input.releaseDate} name='releaseDate' onChange={(e) => handleChange(e)} />
+    //             </div>
+    //             <div>
+    //                 <label>Rating </label>
+    //                 <input type='number' value={input.rating} name='rating' onChange={(e) => handleChange(e)} />
+    //             </div>
+    //         </div>
+    //         <div>
+    //         {allGenres?
+    //             <div>
+    //                 <label>Genres</label>
+    //                     <select onChange={e => handleSelect(e)}>
+    //                         {allGenres.map((genres) => {
+    //                         return <option value={genres.name}>{genres.name}</option>
+    //                         })}
+    //                     </select>
+    //                     <div >
+    //                     {
+    //                         input.genres.map(d =>
+    //                             <div>
+    //                                 <p>{d}</p>
+    //                                 <button onClick={(e) => handleDelete(e, d)}>X</button>
+    //                             </div>)
+    //                     }
+    //                 </div>
+    //             </div>
+    //             : <p>Loading Genres...</p>
+    //             }
+    //         </div>    
+    //         <div>
+    //             <label>Platforms</label>
+    //             <div>
+    //                 {
+    //                     platforms.map((platform,i) =>{
+    //                         return (
+    //                             <div key={i}>
+    //                                 <input type='checkbox'
+    //                                 id={`${i}`}
+    //                                 checked= {isChecked[i]}
+    //                                 name={platform}
+    //                                 value={platform}
+    //                                 onChange={(e) => handleCheckbox(e)}
+    //                                 />
+    //                                 <span>{platform}</span>
+    //                             </div>    
+    //                         )
+    //                     })
+    //                 }  
+    //             </div>    
+    //         </div>  
+    //     </form>
+    // </div>
 )
 
 

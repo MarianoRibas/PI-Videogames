@@ -30,8 +30,10 @@ return (
         <div className={styles.mainConteiner}>
             
             <div>
+                <div>
                 <img src={detail.image} alt="" className={styles.gameImage}/>
-                {/* <p>ACA VA LA IMG</p> */}
+                </div>
+                
                 <div className={styles.gameInfo}>
                     <p>Rating:{detail.rating}</p>
                     <p>{detail.platforms}</p>

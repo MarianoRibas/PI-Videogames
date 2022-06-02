@@ -121,11 +121,20 @@
 .gameImage{
     height: 14rem;
     width: 21rem;
-    border-radius: 8px 8px 0 0;
+    border-radius: 16px 0px 0 0;
 }
 
 .gameInfo{
     text-align: left;
+    /* background: linear-gradient(360deg, rgb(46 92 32/0) 0%, rgb(0 0 0 / 1) 150%); */
+    background: linear-gradient(360deg, hsl(100, 100%, 20%, 0.7) 0%, rgb(0 0 0 / 0%) 92%);
+    padding: 1rem;
+    background: radial-gradient(circle, rgb(4 4 4) 0%, rgb(60 147 60/ .3.4) 450%);
+    border-radius: 0 0px 16px 0;
+    position: absolute;
+    width: 304px;
+    height: 134px;
+    top: 18rem;
 }
 
 .gameDescription{

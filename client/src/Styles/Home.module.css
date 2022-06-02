@@ -56,14 +56,16 @@ body{
     
     justify-content: center;
     display: flex;
-    margin-top: 3em;
+    /* margin-top: 3em; */
     animation: 2s;
     /* margin: 0 20em; */
+    height: 36px;
 }
 
 
 .main{
     display: flex;
+    margin-top: 1rem;
     
 }
 
@@ -225,10 +227,19 @@ pButt:hover{
     flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
-    margin: 1em 0;
+    margin: 3rem 0;
     flex-wrap: wrap;
     align-content: center;
+    /* background-color: green; */
+    height: 36px;
+    /* width: 613px; */
+    /* background-color: green; */
+    /* background-color: green; */
+    background: radial-gradient(circle, rgb(48 48 48) 0%, rgba(0,0,0,1) 52%);
 }
+
+
+
 
 .divOrder {
     color: #fff;
@@ -275,7 +286,8 @@ select::-ms-expand {
    font-weight: 700;
    background: #67686800;
    transition-duration: .5s;
-   border-radius: .25em;
+   /* border-radius: .25em; */
+   border-radius: 8px;
 }
 
 .divOrder select:hover{
@@ -303,6 +315,7 @@ select::-ms-expand {
    cursor:pointer;
    pointer-events:none;
    transition: 2s all ease;
+   border-radius: 8px;
 }
 
 .divOrder select:hover::after{

@@ -164,56 +164,35 @@ return (
                         <div className={styles.mainContainerCreate}>
                             <div className={styles.divForm1}>
                                 <div className={styles.divForm1PerItem}>
-                                    <label>Name</label>
+                                    {/* <label>Name</label> */}
                                     <input type='text' value={input.name} name='name' onChange={(e) => handleChange(e)} />
                                 </div> 
                                 <div className={styles.divForm1PerItem}>
-                                    <label>Description</label>
+                                    {/* <label>Description</label> */}
                                 <input type='text' value={input.description} name='description' onChange={(e) => handleChange(e)} />
                                 </div>
                                 <div className={styles.divForm1PerItem}>
-                                    <label>Image (Link)</label>
+                                    {/* <label>Image (Link)</label> */}
                                     <input type='text' value={input.image} name='image' onChange={(e) => handleChange(e)} />
                                 </div> 
                                 <div className={styles.divForm1PerItem}>
-                                    <label>Release Date</label>
+                                    {/* <label>Release Date</label> */}
                                     <input type='text' value={input.releaseDate} name='releaseDate' onChange={(e) => handleChange(e)} />
                                 </div>
                                 <div className={styles.divForm1PerItem}>
-                                    <label>Rating (0-5)</label>
-                                    <input type='number' value={input.rating} name='rating' onChange={(e) => handleChange(e)} />
+                                    {/* <label>Rating (0-5)</label> */}
+                                    <input style={{width:'8%'}}type='number' value={input.rating} name='rating' onChange={(e) => handleChange(e)} />
                                 </div>
                             </div>
-                            <div className={styles.forms}>
-                                <div className={styles.divGenres}>
-                                    {allGenres?
-                                        <div>
-                                            <label>Genres</label>
-                                                <select onChange={e => handleSelect(e)}>
-                                                    {allGenres.map((genres) => {
-                                                    return <option value={genres.name}>{genres.name}</option>
-                                                    })}
-                                                </select>
-                                            <div >
-                                                {
-                                                    input.genres.map(d =>
-                                                    <div>
-                                                        <p>{d}</p>
-                                                        <button onClick={(e) => handleDelete(e, d)}>X</button>
-                                                    </div>)
-                                                }
-                                            </div>
-                                        </div>
-                                        : <p>Loading Genres...</p>
-                                        }
-                                </div>    
-                                <div className={styles.divPlatforms}>
+                            <div className={styles.divForm2}>
+                                   
+                                <div  >
                                     <label>Platforms</label>
-                                        <div>
+                                        <div className={styles.divPlatforms} style={{width:'150px'}}>
                                             {
                                                 platforms.map((platform,i) =>{
                                                     return (
-                                                        <div key={i}>
+                                                        <div style={{fontWeight:'400', color:'hsl(0,0%, 70%,1)'}} key={i}>
                                                             <input type='checkbox'
                                                             id={`${i}`}
                                                             checked= {isChecked[i]}
@@ -229,6 +208,29 @@ return (
                                         </div>    
                                 </div> 
                             </div> 
+                            <div className={styles.divForm3}>
+                                    {allGenres?
+                                        <div className={styles.selectGenres}>
+                                            <label>Genres</label>
+                                                <select onChange={e => handleSelect(e)}>
+                                                    {allGenres.map((genres) => {
+                                                    return <option value={genres.name}>{genres.name}</option>
+                                                    })}
+                                                </select>
+                                                <span className={styles.customArrow}></span>
+                                            <div >
+                                                {
+                                                    input.genres.map(d =>
+                                                    <div>
+                                                        <p>{d}</p>
+                                                        <button onClick={(e) => handleDelete(e, d)}>X</button>
+                                                    </div>)
+                                                }
+                                            </div>
+                                        </div>
+                                        : <p>Loading Genres...</p>
+                                        }
+                                </div> 
                         </div>
                             <div className={styles.addButton}>
                                 <button>Add</button>

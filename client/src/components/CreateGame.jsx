@@ -192,7 +192,7 @@ return (
                                             {
                                                 platforms.map((platform,i) =>{
                                                     return (
-                                                        <div style={{fontWeight:'400', color:'hsl(0,0%, 70%,1)'}} key={i}>
+                                                        <div className={styles.checkBox} style={{fontWeight:'400', color:'hsl(0,0%, 70%,1)'}} key={i}>
                                                             <input type='checkbox'
                                                             id={`${i}`}
                                                             checked= {isChecked[i]}
@@ -200,7 +200,7 @@ return (
                                                             value={platform}
                                                             onChange={(e) => handleCheckbox(e)}
                                                             />
-                                                            <span>{platform}</span>
+                                                            <label>{platform}</label>
                                                         </div>    
                                                     )
                                                 })
@@ -220,22 +220,23 @@ return (
                                                 </select>
                                                 <span className={styles.customArrow}></span>
                                             <div >
-                                                {
+                                                
+                                            </div>
+                                        </div>
+                                        : <p>Loading Genres...</p>
+                                        }
+                                    {
                                                     input.genres.map(d =>
                                                     <div>
                                                         <p>{d}</p>
                                                         <button onClick={(e) => handleDelete(e, d)}>X</button>
                                                     </div>)
                                                 }
-                                            </div>
-                                        </div>
-                                        : <p>Loading Genres...</p>
-                                        }
                                 </div> 
                         </div>
-                            {/* <div className={styles.addButton}>
+                            <div className={styles.addButton}>
                                 <button>Add</button>
-                            </div> */}
+                            </div>
                     </form>
                 </div>
 

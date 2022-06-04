@@ -12,6 +12,7 @@ width: 10px;
 
 
 
+
 .backgroundCreate{
     display: flex;
     align-content: center;
@@ -85,8 +86,7 @@ width: 10px;
 
 .divForm1PerItem{
     
-    /* display: flex;
-    flex-direction: column; */
+   
     padding: .5rem;
     font-weight: 200;
     font-size: 1rem;
@@ -112,6 +112,10 @@ width: 10px;
     font-style: normal;
     font-size: 1rem;
 
+}
+
+.divForm1perItem input:hover{
+    background: linear-gradient(#222 ,transparent);
 }
 
 .divForm1PerItem input::placeholder{
@@ -147,7 +151,6 @@ width: 10px;
     min-width: 33.3%;
     flex:1;
 }
-
 .divPlatforms{
     display: flex;
     flex-direction: column;
@@ -167,8 +170,24 @@ width: 10px;
     font-weight: 700;
     
 }
-
-
+.checkBox [type=checkbox]{
+    display: none;
+}
+.checkBox [type=checkbox] + label{
+    cursor: pointer;
+}
+.checkBox label{
+    padding: 2px 5px;  
+}
+.checkBox:hover{
+  
+        background: hsl(0, 0%, 100%, .16);
+        border-radius: 4px;
+    
+}
+.checkBox:active{
+    background: hsl(0, 0%, 70%, .16);
+}
 
 
 
@@ -198,13 +217,18 @@ width: 10px;
     margin-top: .5rem;
 }
 
+.selectGenres select:hover{
+    background: hsl(0, 0%, 100%, .16);
+}
+
 .customArrow{
     position: absolute;
     top: 0;
     right: 0;
     display: block;
-    background: hsl(0, 0%, 16%);
-    height: 84.22%;
+    /* background: hsl(0, 0%, 16%); */
+    background: #1c7;
+    height: 83%;
     margin-top: .5rem;
     width: 4rem;
     pointer-events: none;
@@ -225,16 +249,19 @@ transform: translate(-50%, -50%);
 .customArrow::before{
     border-left: var(--size) solid transparent ;
     border-right: var(--size) solid transparent ;
-    border-bottom: var(--size) solid rgba(255,255,255, .5);
+    /* border-bottom: var(--size) solid rgba(255,255,255, .5); */
+    border-bottom: var(--size) solid hsla(0, 0%, 30%, 1);
     top:35% 
 }
 
 .customArrow::after{
     border-left: var(--size) solid transparent ;
     border-right: var(--size) solid transparent ;
-    border-top: var(--size) solid rgba(255,255,255, .5) ;
+    /* border-top: var(--size) solid rgba(255,255,255, .5) ; */
+    border-top: var(--size) solid hsla(0, 0%, 30%, 1);
     top:65%;
 }
+
 
 
 
@@ -245,14 +272,21 @@ transform: translate(-50%, -50%);
     justify-content: right;
     text-align: right;
     /* margin-top: 1rem; */
+    color: hsla(0, 0%, 30%, 1);
    
 }
 
 .addButton button{
     padding: 1rem 2rem;
     border-radius: 8px;
-    background-color: green;
-    color: white;
+    color:hsla(0, 0%, 30%, 1);
+    background-color: #1c7;
+    font-size: 1rem;
+    font-weight: 700;
+}
+.addButton button:hover{
+    background-color: #1c7;
+    opacity: .5;
 }
 
 .ratingInput{

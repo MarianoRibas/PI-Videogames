@@ -43,7 +43,7 @@ return (
             </div>
             <div className={styles.gameDescription}>
                 <h1 className={styles.title}>{detail.name}</h1>
-                <p>{detail.description}</p>
+                {detail.description}
             </div>
         </div>
             

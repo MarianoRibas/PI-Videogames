@@ -33,37 +33,46 @@
     font-family: 'Helvetica';
     /* padding: 11em 0em 0em 0.5em; */
     /* background-color: rgba(0, 0, 5, 0.5); */
-    /* background: linear-gradient(
-        hsl(0 0% 0% / 0),
-        hsl(0 0% 10% / .5),
-        hsl(0 0% 0% /1)
-    ); */
-    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(92,87,87,0) 30%);
-    height: 124px;
-    width: 282px;
+    /* background: linear-gradient( hsl(0 0% 0% / 0), hsl(0 0% 10% / .5), hsl(0 0% 0% /1) ); */
+    /* background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(92,87,87,0) 30%); */
+    /* background: linear-gradient(hsl(0 0% 40% / 0), hsl(0 0% 40%/.5), hsl(0 0% 0%/1)90%); */
+    /* background: linear-gradient(hsl(0 0% 40%/ 0), hsl(0 0% 40% / .4) 10%, hsl(0 0% 40%/.8), hsl(0 0% 0%/1)90%); */
+    background: linear-gradient(hsl(0 0% 16% / .7),hsl(0 0% 0%/1) 80%);
+
+    height: 82px;
+    width: 262px;
     text-align: left;
     position: absolute;
-    top: 11em;
+    top: 10.5em;
     /* left: 0.5em; */
     padding-left: 0.5em;
-    text-shadow: 6px 4px 14px rgba(0, 0, 0, 0.596);
+    padding-top: .5rem;
+    text-shadow: 6px 4px 14px rgb(0 0 0 / 60%);
     color: white;
+    margin: 0;
+}
+
+.containerInfo h3{
+    margin: 0;
 }
 
 .containerInfo p{
     color: white;
     /* justify-content: right; */
-    background-color: hsl(100 100% 20% / .7);
+    /* background-color: hsl(100 100% 20% / .7); */
+    background-color: #1c7;
+    opacity: .7;
     /* background-color: rgb(109, 0, 0); */
-    width: max-content;
+    /* width: max-content; */
+    /* width: 83px; */
+    font-size: 13px;
     cursor: pointer;
     display: inline-block;
     padding: 0.3em 1em;
     border-radius: 8px;
-    top:4em;
-    margin-left: 10em;
+    top: 3em;
+    margin-left: 13em;
     position: absolute;
-    
     transition: .75s;
     transform: translateY(100%);
     opacity: 0;
@@ -77,7 +86,18 @@
     width: max-content;
 }
 
+.divGenres {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
 
+.divGenres ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+}
 
 
 .container:hover .containerInfo p{

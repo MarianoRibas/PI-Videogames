@@ -130,30 +130,36 @@ return (
                 <div className={styles.searchBar}>
                     <SearchBar />
                 </div> 
-                {(Array.isArray(currentGames) && currentGames.length>0)?
-                <div className={styles.divOrder}>
-                        <p >Order By:</p>
-                            <select classname= {styles.select} onChange={e => {handleOrder(e)}}>
+                {/* {(Array.isArray(currentGames) && currentGames.length>0)?
+                
+                : <p></p>
+                } */}
+            </header>    
+                
+                {/* <div > */}
+                    {(Array.isArray(currentGames)) ?
+                    <div className={styles.containerSearch}>
+                    
+                    <div className={styles.paginado1}>
+                        <Paginado paginado={paginado} videoGamesPerPage={15} allGames={allGames.length} />
+                    </div>
+                    </div>
+                    
+                    : <p></p>    
+                    }
+                {/* </div> */}
+                <div className={styles.orderConteiner}>
+                    <div className={styles.divOrder}>
+                        <p>Order By:</p>
+                        <select classname={styles.select} onChange={e => { handleOrder(e); } }>
                             <option value="">None</option>
                             <option value='desc'>Name (A-Z)</option>
                             <option value='asc'>Name (Z-A)</option>
                             <option value='lowRating'>Lower Rating</option>
                             <option value='highRating'>Higher Rating</option>
-                            </select>
-                </div>
-                : <p></p>
-                }
-            </header>    
-                
-                <div className={styles.containerSearch}>
-                    {(Array.isArray(currentGames)) ?
-                    
-                    <div className={styles.paginado1}>    
-                        <Paginado paginado={paginado} videoGamesPerPage ={15} allGames = {allGames.length} />
+                        </select>
                     </div>
-                    : <p></p>    
-                    }
-                </div>
+                 </div>
                 <div className={styles.main}>
                     {
                     (currentGames.length > 0 && Array.isArray(currentGames))?
@@ -255,8 +261,10 @@ return (
                                             name={e.name}
                                             image={e.image}
                                             genres={e.createdInDb ?
-                                            e.genres.map((s, index) => (<li key={index}>{s.name}</li>)) :
-                                            e.genres.map((s, index) => (<li key={index}>{s}</li>))} />
+                                            e.genres.map((s, index) => (<li key={index}>{s.name}|</li>)) :
+                                            e.genres.map((s, index) => 
+                                           
+                                            (<li key={index}>{" " +s.trim() + "  |"}</li>))} />
                                         </div>
                                     ))
                                 }

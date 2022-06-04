@@ -56,7 +56,8 @@ body{
     
     justify-content: center;
     display: flex;
-    /* margin-top: 3em; */
+    /* margin-top: 3rem; */
+    margin: 0 auto;
     animation: 2s;
     /* margin: 0 20em; */
     height: 36px;
@@ -161,16 +162,20 @@ body{
     hsl(0 0% 0% / 0)  
     );
    border-width: 10px;
+   
    padding: 0.5em;
    border-radius: 8px;
    position: sticky;
    height: 22em;
    top: 0;
-   margin: 0 1em;
+   margin: 0 0 0 3rem;
    animation: fadein 2s;
 }
 .containerAside a{
     color: white;
+}
+.divSections{
+    padding-left: 1rem;
 }
 
 .divSections:hover{
@@ -225,9 +230,9 @@ pButt:hover{
 .containerSearch{
     display: flex;
     flex-direction: row-reverse;
-    justify-content: center;
-    align-items: center;
-    margin: 3rem 0;
+    /* justify-content: center;
+    align-items: center; */
+    margin: 2rem 0;
     flex-wrap: wrap;
     align-content: center;
     /* background-color: green; */
@@ -239,19 +244,27 @@ pButt:hover{
 }
 
 
-
+.orderConteiner{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    
+}
 
 .divOrder {
     color: #fff;
     display: flex;
     align-items: center;
+   transform: scale(0.9);
     width: 200px;
-    /* margin-left: 3em; */
-    margin-right: 1em;
+    /* margin-left: 1em; */
+    margin-right: 5rem;
+    font-weight: 300;
+    /* margin-top: 6rem; */
     /* padding: 0.5em; */
     font-weight: 100;
-    padding-left: 0.4em;
-    height: 48px;
+    padding-left: 1em;
+    height: 36px;
     justify-content: center;
     background-color: #35343481;
     border-radius: 13px;
@@ -277,11 +290,16 @@ select::-ms-expand {
     display: none;
 }
 
+.divOrder p{
+    font-weight: 400;
+}
+
 .divOrder select{
    text-align: center;
    display: flex;
    width: 60px;
    height: 60px;
+   
    line-height: 1;
    font-weight: 700;
    background: #67686800;
@@ -324,6 +342,7 @@ select::-ms-expand {
 
 .divFilter {
  margin-top: 2em;
+ padding-left: 1rem;
 } 
 .divFilter select{
     color: rgb(255, 255, 255);
@@ -337,6 +356,7 @@ select::-ms-expand {
 .divFilter2{
     display: flex;
     margin-top: 2.5em;
+    padding-left: 1rem;
 }
 
 .divFilter2 select:hover{
@@ -353,7 +373,8 @@ select::-ms-expand {
 
 .filtersApplied{
     /* color: #7a7a7a; */
-    color: rgb(128, 177, 54);
+    /* color: rgb(128, 177, 54); */
+    color: #1c7;
     font-family: helvetica;
     font-style: revert;
     font-weight: 100;

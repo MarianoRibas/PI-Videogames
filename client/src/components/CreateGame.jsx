@@ -225,12 +225,30 @@ return (
                                         </div>
                                         : <p>Loading Genres...</p>
                                         }
+                                        <div style={{
+                                            
+                                            borderBottom: '1px solid #1c7',
+                                            width: 'max-content'
+                                        }}
+                                        >
+                                            <h3 style={{
+                                            fontSize:'18px',
+                                            color:'hsl(0 0% 100% /.80)',
+                                            fontWeight:'200',
+                                            marginBottom:'2px',
+                                            textAlign:'left'
+                                            // paddingBottom:'3px'
+                                        }}>Genres Selected</h3></div>
                                     {
-                                                    input.genres.map(d =>
-                                                    <div>
-                                                        <p>{d}</p>
-                                                        <button onClick={(e) => handleDelete(e, d)}>X</button>
-                                                    </div>)
+                                        <div className={styles.genresSelectedConteiner}>
+                                                    {input.genres.map(d => 
+                                                        <div className={styles.genresSelected}>
+                                                            <p>{d}</p>
+                                                            <button onClick={(e) => handleDelete(e, d)}>X</button>
+                                                        </div>
+                                                        )
+                                                    }
+                                                    </div>
                                                 }
                                 </div> 
                         </div>

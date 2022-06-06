@@ -37,7 +37,10 @@ return (
                 <div className={styles.gameInfo}>
                     <p>Rating:{detail.rating}</p>
                     <p>{detail.platforms}</p>
-                    <p>{detail.genres}</p>
+                    { detail.createdInDb?
+                    <p>{detail.name.genres}</p>
+                    : <p>{detail.genres}</p>
+                    }
                     <p>{detail.releaseDate}</p>
                 </div>
             </div>

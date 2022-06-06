@@ -177,7 +177,7 @@ return (
                                 </div> 
                                 <div className={styles.divForm1PerItem}>
                                     {/* <label>Release Date</label> */}
-                                    <input placeholder='Release Date'  type='text' value={input.releaseDate} name='releaseDate' onChange={(e) => handleChange(e)} />
+                                    <input placeholder='Release Date (DD/MM/YYYY)'  type='text' value={input.releaseDate} name='releaseDate' onChange={(e) => handleChange(e)} />
                                 </div>
                                 <div className={styles.divForm1PerItem}>
                                     {/* <label>Rating (0-5)</label> */}
@@ -225,6 +225,7 @@ return (
                                         </div>
                                         : <p>Loading Genres...</p>
                                         }
+                                   
                                         <div style={{
                                             
                                             borderBottom: '1px solid #1c7',
@@ -238,8 +239,12 @@ return (
                                             marginBottom:'2px',
                                             textAlign:'left'
                                             // paddingBottom:'3px'
-                                        }}>Genres Selected</h3></div>
+                                        }}>Genres Selected</h3>
+                                        
+                                        </div>
+                                
                                     {
+                                        input.genres.length >= 1?
                                         <div className={styles.genresSelectedConteiner}>
                                                     {input.genres.map(d => 
                                                         <div className={styles.genresSelected}>
@@ -249,7 +254,18 @@ return (
                                                         )
                                                     }
                                                     </div>
-                                                }
+                                        :
+                                        <div> 
+                                        <h4 style={{
+                                            // color:'rgb(154, 0, 0)',
+                                            color:'hsl(0 0% 50% / 1)',
+                                            fontWeight:'200',
+                                            fontSize:'17px',
+                                            textAlign:'left',
+                                            fontStyle:'italic'
+                                        }}>You must select almost one genre</h4>
+                                        </div>            
+                                    }
                                 </div> 
                         </div>
                             <div className={styles.addButton}>

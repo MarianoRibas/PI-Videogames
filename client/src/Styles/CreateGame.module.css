@@ -260,6 +260,10 @@ width: 10px;
     flex:1;
 }
 
+.divForm3 label{
+    margin-top: -2px;
+}
+
 .selectGenres{
     display: flex;
     flex-direction: column;
@@ -334,26 +338,7 @@ transform: translate(-50%, -50%);
 
 
 
-.addButton{
-    justify-content: right;
-    text-align: right;
-    /* margin-top: 1rem; */
-    color: hsla(0, 0%, 30%, 1);
-   
-}
 
-.addButton button{
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    color:hsla(0, 0%, 30%, 1);
-    background-color: #1c7;
-    font-size: 1rem;
-    font-weight: 700;
-}
-.addButton button:hover{
-    background-color: #1c7;
-    opacity: .5;
-}
 
 .ratingInput{
     border: none;
@@ -374,8 +359,19 @@ transform: translate(-50%, -50%);
     
 }
 
+.genresSelected button{
+    height: 100%;
+    width: 100%;
+    margin-left: 2px;
+}
+
 .genresSelected button:hover{
-    color: rgb(154, 0, 0);
+    /* color: rgb(154, 0, 0); */
+    background:rgb(154, 0, 0) ;
+}
+
+.genresSelected button:active{
+    background:rgb(95, 0, 0) ;
 }
 
 .genresSelected{
@@ -385,8 +381,9 @@ transform: translate(-50%, -50%);
     font-size: 18px;
     font-weight: 300;
     color: hsl(0, 0%, 100%, .49);
-    height: 40px;
+    height: 34px;
     min-width: 80px;
+    padding: 0px 1px;
     cursor:default;
     
     
@@ -404,4 +401,28 @@ transform: translate(-50%, -50%);
     outline: 0;
     border: none;
     cursor: pointer;
+}
+
+
+.addButton{
+    justify-content: right;
+    text-align: right;
+    /* margin-top: 1rem; */
+    color: hsla(0, 0%, 30%, 1);
+    
+   
+}
+
+.addButton button{
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    color:hsla(0, 0%, 100%, 1);
+    background-color: #1c7;
+    font-size: 1rem;
+    font-weight: 700;
+    text-shadow: 4px 1px 12px rgba(0,0,0,0.35);
+}
+.addButton button:hover{
+    background-color: rgb(15, 141, 84);
+    
 }

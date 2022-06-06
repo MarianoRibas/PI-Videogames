@@ -5,9 +5,14 @@
     background-repeat: no-repeat;
     width: 100%;
     overflow: hidden;
+    display: flex;
     height: 100%; 
+    width: 100%;
     position:fixed; 
     align-content: center;
+    /* */
+    justify-content: center;
+    align-items: center;
     
 }
 .container{
@@ -41,11 +46,14 @@
     /* opacity: calc(0.8); */
     filter:brightness(1);
     border: #3f3f3f00;
-    margin-top: 140px;
+    /* margin-top: 140px; */
     animation: fadein 2s;
     opacity: 0.7;
     border-radius: 5px;
 }
+
+
+
 @keyframes fadein{
     from{
         opacity: 0;
@@ -79,8 +87,8 @@
     animation: spin 1.5s infinite linear;
     filter: blur(1px);
     transition-duration: 2s;
-    margin: auto;
-    margin-top: 180px;
+    /* margin: 50%; */
+    /* margin-top: 180px; */
     
 }
 

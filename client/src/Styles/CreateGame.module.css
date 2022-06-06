@@ -380,6 +380,7 @@ transform: translate(-50%, -50%);
 .genresSelected button:hover{
     /* color: rgb(154, 0, 0); */
     background:rgb(154, 0, 0) ;
+    
 }
 
 .genresSelected button:active{

@@ -112,7 +112,7 @@ function handleDelete (e, d) {
 };
 
 function handleSubmit(e) {
-    if (input.name && input.description && input.rating <= 5) {
+    if (input.name && input.description && input.rating <= 5 && input.genres.length >= 1 && input.platforms.length >=1) {
         e.preventDefault();
         dispatch(createGame(input));
         alert("Videogame created");
@@ -129,15 +129,20 @@ function handleSubmit(e) {
         navigate("/home");
     } else {
         e.preventDefault();
-        alert("You should check name, description and rating fields!");
+        alert("You should check name, description, genres, platforms and rating fields!");
     };
 };
+
+
 
 function handleCheckbox(e) {
     const index = e.target.id
     setIsChecked(!isChecked[index]);
+    if (input.platforms.length > 3) 
+    return alert('You only can select 3 platforms')
     if(e.target.checked === true){
         if(!input.platforms.includes(e.target.value)){
+            
             setInput({
                 ...input,
                 platforms: [...input.platforms, e.target.value]
@@ -268,9 +273,14 @@ return (
                                         :
                                         <div> 
                                         <h4 style={{
-                                            // color:'rgb(154, 0, 0)',
-                                            color:'hsl(0 0% 50% / 1)',
-                                            fontWeight:'200',
+                                            color:'rgb(153, 50, 50)',
+                                            // color:'hsl(0 0% 50% / 1)',
+                                            background:'hsl(0 0% 100% / .16)',
+                                            borderRadius:'4px',
+                                            width:'max-content',
+                                            paddingLeft:'2px',
+                                            paddingRight:'6px',
+                                            fontWeight:'400',
                                             fontSize:'17px',
                                             textAlign:'left',
                                             fontStyle:'italic'

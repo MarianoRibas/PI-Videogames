@@ -34,6 +34,10 @@ const paginado = (pageNum) => {
     setCurrentPage(pageNum);
 };
 
+if (allGames.length < 1) {
+    dispatch(getAllVideoGames());
+}
+
 // useEffect(()=>{dispatch(getGenres())}, []);
 // genresCount = allGenres.map(genre => {})
 

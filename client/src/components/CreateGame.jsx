@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import { createGame, getGenres } from "../actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import styles from '../Styles/CreateGame.module.css'
+import styles from '../Styles/CreateGame.module.css';
+import home from './home3.png';
+
 
 
 export default function CreateGame () {
@@ -152,15 +154,24 @@ function handleCheckbox(e) {
 }
 
 return (
-        <div style={{color:'white'}}>
+        <div style={{ color:'white'}}>
+                                  
+            
             <div className={styles.backgroundCreate}>
+                
+            <div className={styles.NavConteiner}>
+                    <Link to ='/home'> 
+                        <buton className={styles.NavButton}><img src={home} alt=""/></buton>
+                    </Link>    
+                        <h6>Home</h6>
+            </div> 
                 <div className={styles.divMain}>
                     <div className={styles.headerCreate}>
                         <header >
                             Add a Game
                         </header>
                     </div>
-                    <form>
+                    <form onSubmit={(e) => handleSubmit(e)}>
                         <div className={styles.mainContainerCreate}>
                             <div className={styles.divForm1}>
                                 <div className={styles.divForm1PerItem}>
@@ -269,12 +280,12 @@ return (
                                 </div> 
                         </div>
                             <div className={styles.addButton}>
-                                <button>Add</button>
+                                <button type='submit'>Add</button>
                             </div>
                     </form>
                 </div>
-
             </div>
+                
         </div>
 
 

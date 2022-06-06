@@ -16,6 +16,7 @@ width: 10px;
 .backgroundCreate{
     display: flex;
     align-content: center;
+    flex-direction: column;
     /* align-items: center; */
     margin-top: 4rem;
     padding: 3rem;
@@ -35,7 +36,17 @@ width: 10px;
     /* align-items: center; */
     width:100%;
     /* flex-wrap: wrap; */
+    animation: fadein .5s
 
+}
+
+@keyframes fadein{
+    from{
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .headerCreate{
@@ -48,6 +59,7 @@ width: 10px;
     
     /* width: 50rem; */
     width: 100%;
+    margin-top: -10px;
     
 }
 
@@ -64,7 +76,7 @@ width: 10px;
     flex-wrap:wrap;
     /* justify-content:left; */
     /* align-items: center; */
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     
 }
 
@@ -425,4 +437,57 @@ transform: translate(-50%, -50%);
 .addButton button:hover{
     background-color: rgb(15, 141, 84);
     
+}
+
+
+.NavConteiner{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    max-height: 20px;
+    max-width: 20px;
+    opacity: .7;
+    cursor: default;
+}
+
+
+.NavConteiner:hover{
+    opacity: 1;
+    filter: brightness(3px);
+}
+
+.NavConteiner button{
+    width: 40px;
+    max-width: 40px;
+    height: 40px;
+    background: none; 
+}
+
+.NavConteiner h6{
+    margin-left: 10px;
+    font-size: 25px;
+    
+    transform: scaleX(0%);
+}
+
+.NavButton img{
+    width: 40px;
+    max-width: 40px;
+    height: 40px;
+    /* cursor: pointer; */
+}
+
+.NavConteiner:hover h6{
+    animation: expandHome 1s;
+    transform-origin: left;
+    transform: scaleX(100%);
+}
+
+@keyframes expandHome{
+    from{
+        transform: scaleX(0%);
+    }
+    to {
+        transform: scaleX(100%);
+    }
 }

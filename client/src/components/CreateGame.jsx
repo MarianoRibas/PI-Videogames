@@ -138,8 +138,7 @@ function handleSubmit(e) {
 function handleCheckbox(e) {
     const index = e.target.id
     setIsChecked(!isChecked[index]);
-    if (input.platforms.length > 3) 
-    return alert('You only can select 3 platforms')
+    
     if(e.target.checked === true){
         if(!input.platforms.includes(e.target.value)){
             
@@ -235,10 +234,10 @@ return (
                                                     })}
                                                 </select>
                                                 <span className={styles.customArrow}></span>
-                                            <div >
                                                 
-                                            </div>
+                                                
                                         </div>
+                                        
                                         : <p>Loading Genres...</p>
                                         }
                                    
@@ -262,14 +261,14 @@ return (
                                     {
                                         input.genres.length >= 1?
                                         <div className={styles.genresSelectedConteiner}>
-                                                    {input.genres.map(d => 
+                                                    {
+                                                    input.genres.map(d => 
                                                         <div className={styles.genresSelected}>
                                                             <p>{d}</p>
                                                             <button onClick={(e) => handleDelete(e, d)}>X</button>
                                                         </div>
-                                                        )
-                                                    }
-                                                    </div>
+                                                        )}           
+                                        </div>
                                         :
                                         <div> 
                                         <h4 style={{

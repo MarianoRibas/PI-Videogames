@@ -5,6 +5,7 @@ import { getDetail } from "../actions/index";
 import { useEffect } from "react";
 import styles from "../Styles/Details.module.css"
 import home from './home3.png'
+import StarRating from "./StarRating";
 export default function GameDetail () {
 
 const dispatch = useDispatch();
@@ -14,6 +15,7 @@ gameId.toString();
 useEffect(() => {dispatch(getDetail(gameId.id))}, [dispatch]);
 const p = "<"
 
+const ratingRound = Math.round(detail.rating);
 
 return (
     <div>
@@ -35,13 +37,18 @@ return (
                 </div>
                 
                 <div className={styles.gameInfo}>
-                    <p>Rating:{detail.rating}</p>
-                    <p>{detail.platforms}</p>
-                    { detail.createdInDb?
-                    <p>{detail.name.genres}</p>
-                    : <p>{detail.genres}</p>
+                    <div  style={{marginTop:'110px'}}>
+                    {/* <p>Rating:{Math.round(detail.rating)}</p> */}
+                    <StarRating rating={ratingRound} />
+                    {/* <p>Platforms{detail.platforms}</p> */}
+                    <div style={{display:'flex',marginTop:'.4rem'}}>
+                    { detail.createdInDb ?
+                        detail.genres.map((s, index) => (<li key={index} style={{listStyleType:'none', marginLeft:'4px'}}>{s.name}</li>)) 
+                        : detail.genres.map((s, index) => (<li key={index} style={{listStyleType:'none', marginLeft:'4px'}}>{" " +s.trim() + ""}</li>))
                     }
-                    <p>{detail.releaseDate}</p>
+                    </div>
+                    <p style={{marginLeft:'5px'}}>Released:{detail.releaseDate}</p>
+                    </div>
                 </div>
             </div>
             <div className={styles.gameDescription}>

@@ -128,13 +128,15 @@
     text-align: left;
     /* background: linear-gradient(360deg, rgb(46 92 32/0) 0%, rgb(0 0 0 / 1) 150%); */
     background: linear-gradient(360deg, hsl(100, 100%, 20%, 0.7) 0%, rgb(0 0 0 / 0%) 92%);
+    /* background: linear-gradient(360deg, #1c7 2%, rgba(0,0,0,1) 8%, rgba(187,187,187,0) 100%); */
     padding: 1rem;
-    background: radial-gradient(circle, rgb(4 4 4) 0%, rgb(60 147 60/ .3.4) 450%);
+    /* background: radial-gradient(circle, rgb(4 4 4) 0%, rgb(60 147 60/ .3.4) 450%); */
     border-radius: 0 0px 16px 0;
     position: absolute;
     width: 304px;
-    height: 134px;
-    top: 18rem;
+    height: 13rem;
+    top: 12rem;
+    vertical-align: baseline;
 }
 
 .gameDescription{

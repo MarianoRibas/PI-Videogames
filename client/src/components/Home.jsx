@@ -34,9 +34,7 @@ const paginado = (pageNum) => {
     setCurrentPage(pageNum);
 };
 
-if (allGames.length < 1) {
-    dispatch(getAllVideoGames());
-}
+
 
 // useEffect(()=>{dispatch(getGenres())}, []);
 // genresCount = allGenres.map(genre => {})
@@ -68,7 +66,7 @@ function handleReload (e) {
 
 //cuando se cambia el filtro por género:
 let firstUpdate1 = useRef(true);
-// let firstUpdate2 = useRef(true);
+
 
 
 useEffect (() => { 
@@ -145,7 +143,8 @@ return (
                     <div className={styles.containerSearch}>
                     
                     <div className={styles.paginado1}>
-                        <Paginado paginado={paginado} videoGamesPerPage={15} allGames={allGames.length} />
+                        <Paginado paginado={paginado} videoGamesPerPage={15} allGames={allGames.length} 
+                        currentPage = {currentPage} />
                     </div>
                     </div>
                     
@@ -172,7 +171,7 @@ return (
                             <Link to='/videogame' style={{ textDecoration: 'none' }}><h2 className={styles.divSections}>Add a Game</h2></Link>
                             </div>
                             <div>
-                            <Link to='/dBGames' style={{ textDecoration: 'none' }}><h2 className={styles.divSections}>My Games</h2></Link>
+                            {/* <Link to='/dBGames' style={{ textDecoration: 'none' }}><h2 className={styles.divSections}>My Games</h2></Link> */}
                             {/* <button onClick={e => {handleReload(e)}}>Re-load All Games</button> */}
                             </div>
                             {/* <div > */}
@@ -277,12 +276,7 @@ return (
                         }
                     
                 </div>
-                {(Array.isArray(currentGames)) ?
-                <div>    
-                    <Paginado paginado={paginado} videoGamesPerPage ={15} allGames = {allGames.length} />
-                </div>
-                : <p></p>
-                }  
+                
         </div> 
         
    

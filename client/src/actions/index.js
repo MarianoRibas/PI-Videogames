@@ -14,26 +14,44 @@ export const POST_GAME = 'POST_GAME';
 
 
 // ACTIONS:
+//         let games = await allGames.data.filter((value, index, gamesArr) => index === gamesArr.findIndex((t) => (t.name === value.name))
+// )
+
+// export function getAllVideoGames () {
+//     return async (dispatch) => {
+//         try {
+//         const allGames = await axios ('http://localhost:3001/videogames')
+
+       
+//         return dispatch(
+//             {
+//             type: GET_ALL_VIDEOGAMES,
+//             payload: allGames.data
+//                 }
+//             );
+    
+//         } catch (error) {
+//             console.log(error)
+//              };
+    
+//     };
+// };
 
 export function getAllVideoGames () {
-    return async (dispatch) => {
-        try {
-        const allGames = await axios ('http://localhost:3001/videogames')
-        let games = await allGames.data.filter((value, index, self) => index === self.findIndex((t) => (t.name === value.name))
-)
-        return dispatch(
-            {
-            type: GET_ALL_VIDEOGAMES,
-            payload: games
+    return (dispatch) => {
+        fetch ('http://localhost:3001/videogames')
+        .then (res => res.json())
+        .then (games =>{
+            return dispatch(
+                {
+                    type: GET_ALL_VIDEOGAMES,
+                    payload:games
                 }
-            );
-    
-        } catch (error) {
-            console.log(error)
-             };
-    
-    };
-};
+            )
+        })
+        .catch (err => console.log(err))
+    }
+}
 
 export function searchedGame (payload) {
     return {
@@ -56,19 +74,33 @@ export function deleteAll() {
     };
 };
 
+// export function getGamesByName (payload) {
+//     return async function(dispatch){
+//         try{
+//             const gamesByName = await axios.get(`http://localhost:3001/videogames?name=${payload}`)
+//             return dispatch({
+//                 type: GET_VIDEOGAMES_BY_NAME,
+//                 payload: gamesByName.data
+//             });
+//         } catch(e){
+//             console.log(e)
+//         };
+//     };
+// };
+
 export function getGamesByName (payload) {
-    return async function(dispatch){
-        try{
-            const gamesByName = await axios.get(`http://localhost:3001/videogames?name=${payload}`)
+    return (dispatch) => {
+        fetch (`http://localhost:3001/videogames?name=${payload}`)
+        .then(res => res.json())
+        .then(game =>{
             return dispatch({
                 type: GET_VIDEOGAMES_BY_NAME,
-                payload: gamesByName.data
-            });
-        } catch(e){
-            console.log(e)
-        };
-    };
-};
+                payload: game
+            })
+        })
+        .catch((err) => console.log(err));
+    }
+}
 
 export function orderBy(payload){
     return{
